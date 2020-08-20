@@ -20,13 +20,19 @@ import { TransactionRecord } from "./TransactionRecord";
 import { Status } from "./Status";
 import * as base64 from "./encoding/base64";
 import UnaryMethodDefinition = grpc.UnaryMethodDefinition;
-import { hash as sha384Hash } from "@stablelib/sha384";
+import { createHash } from 'crypto';
 import { HederaPrecheckStatusError } from "./errors/HederaPrecheckStatusError";
 
 /** signature/public key pairs are passed around as objects */
 export interface SignatureAndKey {
     signature: Uint8Array;
     publicKey: Ed25519PublicKey;
+}
+
+function sha384Hash(data: Uint8Array): Uint8Array {
+    const hash = createHash('sha384');
+    hash.update(data);
+    return hash.digest();
 }
 
 const receiptRetryDelayMs = 500;
