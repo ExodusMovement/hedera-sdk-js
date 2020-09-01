@@ -1,6 +1,5 @@
 import * as nacl from "tweetnacl";
 import { Ed25519PublicKey } from "./Ed25519PublicKey";
-import { Mnemonic } from "./Mnemonic";
 import {
     arraysEqual,
     deriveChildKey,
@@ -125,7 +124,7 @@ export class Ed25519PrivateKey {
      * @link generateMnemonic
      */
     public static async fromMnemonic(
-        mnemonic: Mnemonic,
+        mnemonic: any, // accept strings
         passphrase: string
     ): Promise<Ed25519PrivateKey> {
         if (mnemonic._isLegacy) {
