@@ -56,7 +56,6 @@
     "bignumber.js": "^9.0.0",
     "bip39": "^3.0.2",
     "google-protobuf": "^3.12.4",
-    "js-sha3": "^0.8.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
