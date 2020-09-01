@@ -7,7 +7,6 @@ import {
     ed25519PrivKeyPrefix
 } from "./util";
 import { RawKeyPair } from "./RawKeyPair";
-import { createKeystore, loadKeystore } from "./Keystore";
 import { BadKeyError } from "../errors/BadKeyError";
 import { BadPemFileError } from "../errors/BadPemFileError";
 import { EncryptedPrivateKeyInfo } from "./pkcs";
@@ -150,23 +149,6 @@ export class Ed25519PrivateKey {
     }
 
     /**
-     * Recover a private key from a keystore blob previously created by `.createKeystore()`.
-     *
-     * This key will _not_ support child key derivation.
-     *
-     * @param keystore the keystore blob
-     * @param passphrase the passphrase used to create the keystore
-     * @throws KeyMismatchError if the passphrase is incorrect or the hash fails to validate
-     * @link createKeystore
-     */
-    public static async fromKeystore(
-        keystore: Uint8Array,
-        passphrase: string
-    ): Promise<Ed25519PrivateKey> {
-        return new Ed25519PrivateKey(await loadKeystore(keystore, passphrase));
-    }
-
-    /**
      * Generate a new, cryptographically random private key.
      *
      * This key will _not_ support child key derivation.
@@ -247,20 +229,6 @@ export class Ed25519PrivateKey {
         }
 
         return (raw ? "" : ed25519PrivKeyPrefix) + this._asStringRaw;
-    }
-
-    /**
-     * Create a keystore blob with a given passphrase.
-     *
-     * The key can be recovered later with `fromKeystore()`.
-     *
-     * Note that this will not retain the ancillary data used for deriving child keys,
-     * thus `.derive()` on the restored key will throw even if this instance supports derivation.
-     *
-     * @link fromKeystore
-     */
-    public toKeystore(passphrase: string): Promise<Uint8Array> {
-        return createKeystore(this._keyData, passphrase);
     }
 
     /**
