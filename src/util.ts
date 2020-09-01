@@ -122,24 +122,10 @@ export function getResponseHeader(response: Response): ResponseHeader {
     switch (response.getResponseCase()) {
         case Response.ResponseCase.RESPONSE_NOT_SET:
             throw new Error(`expected body for query response: ${response.toString()}`);
-        case Response.ResponseCase.GETBYKEY:
-            return response.getGetbykey()!.getHeader()!;
-        case Response.ResponseCase.GETBYSOLIDITYID:
-            return response.getGetbysolidityid()!.getHeader()!;
         case Response.ResponseCase.CRYPTOGETACCOUNTBALANCE:
             return response.getCryptogetaccountbalance()!.getHeader()!;
-        case Response.ResponseCase.CRYPTOGETACCOUNTRECORDS:
-            return response.getCryptogetaccountrecords()!.getHeader()!;
-        case Response.ResponseCase.CRYPTOGETINFO:
-            return response.getCryptogetinfo()!.getHeader()!;
-        case Response.ResponseCase.CRYPTOGETPROXYSTAKERS:
-            return response.getCryptogetproxystakers()!.getHeader()!;
         case Response.ResponseCase.TRANSACTIONGETRECEIPT:
             return response.getTransactiongetreceipt()!.getHeader()!;
-        case Response.ResponseCase.TRANSACTIONGETRECORD:
-            return response.getTransactiongetrecord()!.getHeader()!;
-        case Response.ResponseCase.TRANSACTIONGETFASTRECORD:
-            return response.getTransactiongetfastrecord()!.getHeader()!;
         default:
             throw new Error(`unsupported response case ${response.getResponseCase()}`);
     }

@@ -5,37 +5,15 @@ package proto;
 option java_package = "com.hederahashgraph.api.proto.java";
 option java_multiple_files = true;
 
-import "GetByKey.proto";
-import "GetBySolidityID.proto";
-
 import "CryptoGetAccountBalance.proto";
-import "CryptoGetAccountRecords.proto";
-import "CryptoGetInfo.proto";
-import "CryptoGetLiveHash.proto";
-import "CryptoGetStakers.proto";
-
 import "TransactionGetReceipt.proto";
-import "TransactionGetRecord.proto";
-import "TransactionGetFastRecord.proto";
-
 import "NetworkGetVersionInfo.proto";
 
 /* A single query, which is sent from the client to a node. This includes all possible queries. Each Query should not have more than 50 levels. */
 message Query {
     oneof query {
-        GetByKeyQuery getByKey = 1; // Get all entities associated with a given key
-        GetBySolidityIDQuery getBySolidityID = 2; // Get the IDs in the format used in transactions, given the format used in Solidity
-
         CryptoGetAccountBalanceQuery cryptogetAccountBalance = 7; // Get the current balance in a cryptocurrency account
-        CryptoGetAccountRecordsQuery cryptoGetAccountRecords = 8; // Get all the records that currently exist for transactions involving an account
-        CryptoGetInfoQuery cryptoGetInfo = 9; // Get all information about an account
-        CryptoGetLiveHashQuery cryptoGetLiveHash = 10; // Get a single livehash from a single account, if present
-        CryptoGetStakersQuery cryptoGetProxyStakers = 11; // Get all the accounts that proxy stake to a given account, and how much they proxy stake (not yet implemented in the current API)
-
         TransactionGetReceiptQuery transactionGetReceipt = 14; // Get a receipt for a transaction (lasts 180 seconds)
-        TransactionGetRecordQuery transactionGetRecord = 15; // Get a record for a transaction
-        TransactionGetFastRecordQuery transactionGetFastRecord = 16; // Get a record for a transaction (lasts 180 seconds)
-
         NetworkGetVersionInfoQuery networkGetVersionInfo = 51;
     }
 }
