@@ -8,7 +8,6 @@ import { Timestamp } from "./generated/Timestamp_pb";
 import { dateToTimestamp, Timestamp as JsTimestamp } from "./Timestamp";
 import { BaseClient } from "./BaseClient";
 import { TransactionReceipt } from "./TransactionReceipt";
-import { TransactionRecord } from "./TransactionRecord";
 import { Time } from "./Time";
 
 /**
@@ -100,13 +99,6 @@ export class TransactionId {
     public getReceipt(_: BaseClient): Promise<TransactionReceipt> {
         return new Promise((_, reject) => {
             reject(new Error("(BUG) `TransactionId.getReceipt()` declared, but not overwritten."));
-        });
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public getRecord(_: BaseClient): Promise<TransactionRecord> {
-        return new Promise((_, reject) => {
-            reject(new Error("(BUG) `TransactionId.getRecord()` declared, but not overwritten."));
         });
     }
 

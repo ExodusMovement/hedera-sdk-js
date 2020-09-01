@@ -13,7 +13,6 @@ import { TransactionId } from "./TransactionId";
 import { TransactionReceipt } from "./TransactionReceipt";
 import { Ed25519PublicKey } from "./crypto/Ed25519PublicKey";
 import { Ed25519PrivateKey } from "./crypto/Ed25519PrivateKey";
-import { TransactionRecord } from "./TransactionRecord";
 import { Status } from "./Status";
 import * as base64 from "./encoding/base64";
 import UnaryMethodDefinition = grpc.UnaryMethodDefinition;
@@ -206,12 +205,6 @@ export class Transaction {
     public getReceipt(client: BaseClient): Promise<TransactionReceipt> {
         console.warn("`Transaction.getReceipt()` is deprecrated. Use `(await Transaction.execute()).getReceipt()` instead.");
         return this.id.getReceipt(client);
-    }
-
-    /** @deprecate `Transaction.getRecord()` is deprecrated. Use `(await Transaction.execute()).getRecord()` instead. */
-    public getRecord(client: BaseClient): Promise<TransactionRecord> {
-        console.warn("`Transaction.getRecord()` is deprecrated. Use `(await Transaction.execute()).getRecord()` instead.");
-        return this.id.getRecord(client);
     }
 
     public _toProto(): Transaction_ {
