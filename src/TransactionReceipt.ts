@@ -1,6 +1,5 @@
 import { TransactionReceipt as ProtoTransactionReceipt } from "./generated/TransactionReceipt_pb";
 import { AccountId } from "./account/AccountId";
-import { FileId } from "./file/FileId";
 import { ExchangeRateSet, exchangeRateSetToSdk } from "./ExchangeRate";
 import { Status } from "./Status";
 
@@ -15,7 +14,6 @@ export class TransactionReceipt {
     public readonly status: Status;
 
     private readonly [ "_accountId" ]: AccountId | null;
-    private readonly [ "_fileId" ]: FileId | null;
     private readonly [ "_exchangeRateSet" ]: ExchangeRateSet | null;
     private readonly [ "_topicSequenceNumber" ]: number;
     private readonly [ "_topicRunningHash" ]: Uint8Array;
@@ -23,14 +21,12 @@ export class TransactionReceipt {
     private constructor(
         status: Status,
         accountId: AccountId | null,
-        fileId: FileId | null,
         exchangeRateSet: ExchangeRateSet | null,
         topicSequenceNubmer: number,
         topicRunningHash: Uint8Array
     ) {
         this.status = status;
         this._accountId = accountId;
-        this._fileId = fileId;
         this._exchangeRateSet = exchangeRateSet;
         this._topicSequenceNumber = topicSequenceNubmer;
         this._topicRunningHash = topicRunningHash;
@@ -51,23 +47,6 @@ export class TransactionReceipt {
         }
 
         return this._accountId!;
-    }
-
-    /** @deprecated */
-    public get fileId(): FileId {
-        console.warn("`TransactionReceipt.fileId` is deprecrated. Use `TransactionReceipt.getfileId()` instead.");
-        return this.getFileId();
-    }
-
-    /**
-     * The file ID, if a new file was created.
-     */
-    public getFileId(): FileId {
-        if (this._fileId == null) {
-            throw new Error("receipt does not contain a file ID");
-        }
-
-        return this._fileId!;
     }
 
     /**
@@ -96,7 +75,6 @@ export class TransactionReceipt {
         return {
             status: this.status.toString(),
             accountId: this._accountId?.toString(),
-            fileId: this._fileId?.toString(),
             consensusTopicRunningHash: this._topicRunningHash.byteLength === 0 ?
             /* eslint-disable-next-line no-undefined */
                 undefined :
@@ -117,7 +95,6 @@ export class TransactionReceipt {
         return new TransactionReceipt(
             Status._fromCode(receipt.getStatus()),
             receipt.hasAccountid() ? AccountId._fromProto(receipt.getAccountid()!) : null,
-            receipt.hasFileid() ? FileId._fromProto(receipt.getFileid()!) : null,
             receipt.hasExchangerate() ?
                 exchangeRateSetToSdk(receipt.getExchangerate()!) :
                 null,

@@ -7,7 +7,7 @@ import * as grpc from "@grpc/grpc-js";
 import ProtobufMessage = grpcWeb.ProtobufMessage;
 import UnaryMethodDefinition = grpcWeb.UnaryMethodDefinition;
 
-import { Hbar, Ed25519PrivateKey, Ed25519PublicKey, TransactionReceipt, FileId, AccountId, TransactionId, Status } from "./exports";
+import { Hbar, Ed25519PrivateKey, Ed25519PublicKey, TransactionReceipt, AccountId, TransactionId, Status } from "./exports";
 export * from "./exports";
 
 const readFile = util.promisify(fs.readFile);
@@ -113,7 +113,6 @@ export class Client extends BaseClient {
 for (const cls of [
     TransactionReceipt,
     AccountId,
-    FileId,
     TransactionId,
     Ed25519PrivateKey,
     Ed25519PublicKey,

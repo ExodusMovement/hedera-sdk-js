@@ -31,7 +31,6 @@ export { Hbar } from "./Hbar";
 export { HbarUnit } from "./HbarUnit";
 
 export { AccountId } from "./account/AccountId";
-export { FileId } from "./file/FileId";
 export { TransactionId } from "./TransactionId";
 
 export { TransactionReceipt } from "./TransactionReceipt";
