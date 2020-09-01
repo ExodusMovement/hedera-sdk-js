@@ -1,6 +1,5 @@
 import { TransactionReceipt as ProtoTransactionReceipt } from "./generated/TransactionReceipt_pb";
 import { AccountId } from "./account/AccountId";
-import { ConsensusTopicId } from "./consensus/ConsensusTopicId";
 import { FileId } from "./file/FileId";
 import { ExchangeRateSet, exchangeRateSetToSdk } from "./ExchangeRate";
 import { Status } from "./Status";
@@ -17,7 +16,6 @@ export class TransactionReceipt {
 
     private readonly [ "_accountId" ]: AccountId | null;
     private readonly [ "_fileId" ]: FileId | null;
-    private readonly [ "_topicId" ]: ConsensusTopicId | null;
     private readonly [ "_exchangeRateSet" ]: ExchangeRateSet | null;
     private readonly [ "_topicSequenceNumber" ]: number;
     private readonly [ "_topicRunningHash" ]: Uint8Array;
@@ -26,7 +24,6 @@ export class TransactionReceipt {
         status: Status,
         accountId: AccountId | null,
         fileId: FileId | null,
-        topicId: ConsensusTopicId | null,
         exchangeRateSet: ExchangeRateSet | null,
         topicSequenceNubmer: number,
         topicRunningHash: Uint8Array
@@ -34,7 +31,6 @@ export class TransactionReceipt {
         this.status = status;
         this._accountId = accountId;
         this._fileId = fileId;
-        this._topicId = topicId;
         this._exchangeRateSet = exchangeRateSet;
         this._topicSequenceNumber = topicSequenceNubmer;
         this._topicRunningHash = topicRunningHash;
@@ -75,23 +71,6 @@ export class TransactionReceipt {
     }
 
     /**
-     * TopicID of a newly created consensus service topic.
-     */
-    public getConsensusTopicId(): ConsensusTopicId {
-        if (this._topicId == null) {
-            throw new Error("receipt does not contain a topic ID");
-        }
-
-        return this._topicId!;
-    }
-
-    /** @deprecated `TransactionReceipt.getTopicId()` is deprecrated. Use `TransactionReceipt.getConsensusTopicId()` instead. */
-    public getTopicId(): ConsensusTopicId {
-        console.warn("`TransactionReceipt.getTopicId()` is deprecrated. Use `TransactionReceipt.getConsensusTopicId()` instead.");
-        return this.getConsensusTopicId();
-    }
-
-    /**
      * Updated running hash for a consensus service topic. The result of a ConsensusSubmitMessage.
      */
     public getConsensusTopicRunningHash(): Uint8Array {
@@ -118,7 +97,6 @@ export class TransactionReceipt {
             status: this.status.toString(),
             accountId: this._accountId?.toString(),
             fileId: this._fileId?.toString(),
-            consensusTopicId: this._topicId?.toString(),
             consensusTopicRunningHash: this._topicRunningHash.byteLength === 0 ?
             /* eslint-disable-next-line no-undefined */
                 undefined :
@@ -140,9 +118,6 @@ export class TransactionReceipt {
             Status._fromCode(receipt.getStatus()),
             receipt.hasAccountid() ? AccountId._fromProto(receipt.getAccountid()!) : null,
             receipt.hasFileid() ? FileId._fromProto(receipt.getFileid()!) : null,
-            receipt.hasTopicid() ?
-                ConsensusTopicId._fromProto(receipt.getTopicid()!) :
-                null,
             receipt.hasExchangerate() ?
                 exchangeRateSetToSdk(receipt.getExchangerate()!) :
                 null,

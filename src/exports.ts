@@ -39,6 +39,3 @@ export { TransactionReceipt } from "./TransactionReceipt";
 export { Time } from "./Time";
 
 export { TransactionSigner } from "./BaseClient";
-
-// Consensus
-export { ConsensusTopicId } from "./consensus/ConsensusTopicId";
