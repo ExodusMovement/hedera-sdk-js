@@ -8,9 +8,6 @@ import { TransactionResponse } from "./generated/TransactionResponse_pb";
 import { orThrow, setTimeoutAwaitable } from "./util";
 import { Message } from "google-protobuf";
 import { CryptoService } from "./generated/CryptoService_pb_service";
-import { SmartContractService } from "./generated/SmartContractService_pb_service";
-import { FileService } from "./generated/FileService_pb_service";
-import { FreezeService } from "./generated/FreezeService_pb_service";
 import { AccountId } from "./account/AccountId";
 import { TransactionId } from "./TransactionId";
 import { TransactionReceipt } from "./TransactionReceipt";
@@ -241,13 +238,10 @@ export class Transaction {
 function methodFromTxn(inner: TransactionBody): UnaryMethodDefinition<Transaction_, TransactionResponse> {
     switch (inner.getDataCase()) {
         case TransactionBody.DataCase.CONTRACTCALL:
-            return SmartContractService.contractCallMethod;
         case TransactionBody.DataCase.CONTRACTCREATEINSTANCE:
-            return SmartContractService.createContract;
         case TransactionBody.DataCase.CONTRACTUPDATEINSTANCE:
-            return SmartContractService.updateContract;
         case TransactionBody.DataCase.CONTRACTDELETEINSTANCE:
-            return SmartContractService.deleteContract;
+            throw new Error('This method was removed by code cleanup')
         case TransactionBody.DataCase.CRYPTOCREATEACCOUNT:
             return CryptoService.createAccount;
         case TransactionBody.DataCase.CRYPTODELETE:
@@ -257,19 +251,12 @@ function methodFromTxn(inner: TransactionBody): UnaryMethodDefinition<Transactio
         case TransactionBody.DataCase.CRYPTOUPDATEACCOUNT:
             return CryptoService.updateAccount;
         case TransactionBody.DataCase.FILEAPPEND:
-            return FileService.appendContent;
         case TransactionBody.DataCase.FILECREATE:
-            return FileService.createFile;
         case TransactionBody.DataCase.FILEDELETE:
-            return FileService.deleteFile;
         case TransactionBody.DataCase.FILEUPDATE:
-            return FileService.updateFile;
         case TransactionBody.DataCase.SYSTEMDELETE:
-            return SmartContractService.systemDelete;
         case TransactionBody.DataCase.SYSTEMUNDELETE:
-            return SmartContractService.systemUndelete;
-        case TransactionBody.DataCase.FREEZE:
-            return FreezeService.freeze;
+            throw new Error('This method was removed by code cleanup')
         case TransactionBody.DataCase.DATA_NOT_SET:
             throw new Error("transaction body missing");
         default:
