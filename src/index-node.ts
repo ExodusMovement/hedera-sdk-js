@@ -109,10 +109,6 @@ export class Client extends BaseClient {
     }
 }
 
-// Mirror
-export { MirrorClient } from "./mirror/node/MirrorClient";
-export { MirrorConsensusTopicQuery } from "./mirror/node/MirrorConsensusTopicQuery";
-
 // Override console.log output for some classes (to be toString)
 for (const cls of [
     TransactionReceipt,
