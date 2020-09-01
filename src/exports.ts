@@ -31,13 +31,11 @@ export { Hbar } from "./Hbar";
 export { HbarUnit } from "./HbarUnit";
 
 export { AccountId } from "./account/AccountId";
-export { ContractId } from "./contract/ContractId";
 export { FileId } from "./file/FileId";
 export { TransactionId } from "./TransactionId";
 
 export { TransactionReceipt } from "./TransactionReceipt";
 
-export { ContractFunctionParams } from "./contract/ContractFunctionParams";
 export { Time } from "./Time";
 
 export { TransactionSigner } from "./BaseClient";

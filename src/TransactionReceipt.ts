@@ -1,7 +1,6 @@
 import { TransactionReceipt as ProtoTransactionReceipt } from "./generated/TransactionReceipt_pb";
 import { AccountId } from "./account/AccountId";
 import { ConsensusTopicId } from "./consensus/ConsensusTopicId";
-import { ContractId } from "./contract/ContractId";
 import { FileId } from "./file/FileId";
 import { ExchangeRateSet, exchangeRateSetToSdk } from "./ExchangeRate";
 import { Status } from "./Status";
@@ -18,7 +17,6 @@ export class TransactionReceipt {
 
     private readonly [ "_accountId" ]: AccountId | null;
     private readonly [ "_fileId" ]: FileId | null;
-    private readonly [ "_contractId" ]: ContractId | null;
     private readonly [ "_topicId" ]: ConsensusTopicId | null;
     private readonly [ "_exchangeRateSet" ]: ExchangeRateSet | null;
     private readonly [ "_topicSequenceNumber" ]: number;
@@ -28,7 +26,6 @@ export class TransactionReceipt {
         status: Status,
         accountId: AccountId | null,
         fileId: FileId | null,
-        contractId: ContractId | null,
         topicId: ConsensusTopicId | null,
         exchangeRateSet: ExchangeRateSet | null,
         topicSequenceNubmer: number,
@@ -37,7 +34,6 @@ export class TransactionReceipt {
         this.status = status;
         this._accountId = accountId;
         this._fileId = fileId;
-        this._contractId = contractId;
         this._topicId = topicId;
         this._exchangeRateSet = exchangeRateSet;
         this._topicSequenceNumber = topicSequenceNubmer;
@@ -76,23 +72,6 @@ export class TransactionReceipt {
         }
 
         return this._fileId!;
-    }
-
-    /** @deprecated */
-    public get contractId(): ContractId {
-        console.warn("`TransactionReceipt.contractId` is deprecrated. Use `TransactionReceipt.getcontractId()` instead.");
-        return this.getContractId();
-    }
-
-    /**
-     * The contract ID, if a new smart contract instance was created.
-     */
-    public getContractId(): ContractId {
-        if (this._contractId == null) {
-            throw new Error("receipt does not contain a contract ID");
-        }
-
-        return this._contractId!;
     }
 
     /**
@@ -139,7 +118,6 @@ export class TransactionReceipt {
             status: this.status.toString(),
             accountId: this._accountId?.toString(),
             fileId: this._fileId?.toString(),
-            contractId: this._contractId?.toString(),
             consensusTopicId: this._topicId?.toString(),
             consensusTopicRunningHash: this._topicRunningHash.byteLength === 0 ?
             /* eslint-disable-next-line no-undefined */
@@ -162,9 +140,6 @@ export class TransactionReceipt {
             Status._fromCode(receipt.getStatus()),
             receipt.hasAccountid() ? AccountId._fromProto(receipt.getAccountid()!) : null,
             receipt.hasFileid() ? FileId._fromProto(receipt.getFileid()!) : null,
-            receipt.hasContractid() ?
-                ContractId._fromProto(receipt.getContractid()!) :
-                null,
             receipt.hasTopicid() ?
                 ConsensusTopicId._fromProto(receipt.getTopicid()!) :
                 null,
