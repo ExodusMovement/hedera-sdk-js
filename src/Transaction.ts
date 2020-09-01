@@ -230,11 +230,6 @@ export class Transaction {
 /* eslint-disable-next-line max-len */
 function methodFromTxn(inner: TransactionBody): UnaryMethodDefinition<Transaction_, TransactionResponse> {
     switch (inner.getDataCase()) {
-        case TransactionBody.DataCase.CONTRACTCALL:
-        case TransactionBody.DataCase.CONTRACTCREATEINSTANCE:
-        case TransactionBody.DataCase.CONTRACTUPDATEINSTANCE:
-        case TransactionBody.DataCase.CONTRACTDELETEINSTANCE:
-            throw new Error('This method was removed by code cleanup')
         case TransactionBody.DataCase.CRYPTOCREATEACCOUNT:
             return CryptoService.createAccount;
         case TransactionBody.DataCase.CRYPTODELETE:
@@ -243,13 +238,6 @@ function methodFromTxn(inner: TransactionBody): UnaryMethodDefinition<Transactio
             return CryptoService.cryptoTransfer;
         case TransactionBody.DataCase.CRYPTOUPDATEACCOUNT:
             return CryptoService.updateAccount;
-        case TransactionBody.DataCase.FILEAPPEND:
-        case TransactionBody.DataCase.FILECREATE:
-        case TransactionBody.DataCase.FILEDELETE:
-        case TransactionBody.DataCase.FILEUPDATE:
-        case TransactionBody.DataCase.SYSTEMDELETE:
-        case TransactionBody.DataCase.SYSTEMUNDELETE:
-            throw new Error('This method was removed by code cleanup')
         case TransactionBody.DataCase.DATA_NOT_SET:
             throw new Error("transaction body missing");
         default:
