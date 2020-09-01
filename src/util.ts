@@ -126,14 +126,6 @@ export function getResponseHeader(response: Response): ResponseHeader {
             return response.getGetbykey()!.getHeader()!;
         case Response.ResponseCase.GETBYSOLIDITYID:
             return response.getGetbysolidityid()!.getHeader()!;
-        case Response.ResponseCase.CONTRACTCALLLOCAL:
-            return response.getContractcalllocal()!.getHeader()!;
-        case Response.ResponseCase.CONTRACTGETBYTECODERESPONSE:
-            return response.getContractgetbytecoderesponse()!.getHeader()!;
-        case Response.ResponseCase.CONTRACTGETINFO:
-            return response.getContractgetinfo()!.getHeader()!;
-        case Response.ResponseCase.CONTRACTGETRECORDSRESPONSE:
-            return response.getContractgetrecordsresponse()!.getHeader()!;
         case Response.ResponseCase.CRYPTOGETACCOUNTBALANCE:
             return response.getCryptogetaccountbalance()!.getHeader()!;
         case Response.ResponseCase.CRYPTOGETACCOUNTRECORDS:
@@ -142,10 +134,6 @@ export function getResponseHeader(response: Response): ResponseHeader {
             return response.getCryptogetinfo()!.getHeader()!;
         case Response.ResponseCase.CRYPTOGETPROXYSTAKERS:
             return response.getCryptogetproxystakers()!.getHeader()!;
-        case Response.ResponseCase.FILEGETCONTENTS:
-            return response.getFilegetcontents()!.getHeader()!;
-        case Response.ResponseCase.FILEGETINFO:
-            return response.getFilegetinfo()!.getHeader()!;
         case Response.ResponseCase.TRANSACTIONGETRECEIPT:
             return response.getTransactiongetreceipt()!.getHeader()!;
         case Response.ResponseCase.TRANSACTIONGETRECORD:
