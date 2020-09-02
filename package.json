@@ -32,7 +32,7 @@
   "scripts": {
     "test:unit": "jest --config jest.config.js",
     "test:e2e": "jest --config jest.e2e.config.js --forceExit",
-    "prepare": "gulp build",
+    "prepare": "gulp build; ./patch.sh",
     "docs": "typedoc --excludeNotExported --excludePrivate --excludeProtected --excludeExternals --out docs src",
     "prepublishOnly": "gulp generate:flow",
     "create-account-test": "node examples/create-account.js",
