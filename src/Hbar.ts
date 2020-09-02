@@ -1,7 +1,7 @@
 import BigNumber from "bignumber.js";
 import { HbarRangeError } from "./errors/HbarRangeError";
 import { HbarUnit } from "./HbarUnit";
-import { UInt64Value } from "google-protobuf/google/protobuf/wrappers_pb";
+import { UInt64Value } from "@exodus/google-protobuf/google/protobuf/wrappers_pb";
 
 export type Tinybar = BigNumber.Value;
 

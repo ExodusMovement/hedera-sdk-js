@@ -3,7 +3,7 @@ import { grpc as grpcWeb } from "@improbable-eng/grpc-web";
 import * as fs from "fs";
 import * as util from "util";
 
-import * as grpc from "@grpc/grpc-js";
+import * as grpc from "@exodus/grpc-js";
 import ProtobufMessage = grpcWeb.ProtobufMessage;
 import UnaryMethodDefinition = grpcWeb.UnaryMethodDefinition;
 

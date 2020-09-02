@@ -6,7 +6,7 @@ import { SignatureMap, SignaturePair, TransactionID } from "./generated/BasicTyp
 import { grpc } from "@improbable-eng/grpc-web";
 import { TransactionResponse } from "./generated/TransactionResponse_pb";
 import { orThrow, setTimeoutAwaitable } from "./util";
-import { Message } from "google-protobuf";
+import { Message } from "@exodus/google-protobuf";
 import { CryptoService } from "./generated/CryptoService_pb_service";
 import { AccountId } from "./account/AccountId";
 import { TransactionId } from "./TransactionId";

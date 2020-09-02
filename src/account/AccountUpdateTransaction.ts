@@ -10,7 +10,7 @@ import UnaryMethodDefinition = grpc.UnaryMethodDefinition;
 import { PublicKey } from "../crypto/PublicKey";
 import { AccountId, AccountIdLike } from "./AccountId";
 import { dateToTimestamp, timestampToProto } from "../Timestamp";
-import { BoolValue } from "google-protobuf/google/protobuf/wrappers_pb";
+import { BoolValue } from "@exodus/google-protobuf/google/protobuf/wrappers_pb";
 
 /**
  * Change properties for the given account. Any null field is ignored (left unchanged). This
