@@ -333,10 +333,10 @@
   resolved "https://registry.yarnpkg.com/@exodus/google-protobuf/-/google-protobuf-3.13.0-exodus.1.tgz#724e98c54242ca45a555c7ca24a1b26cbf7073c6"
   integrity sha512-wIjn7psISuijdtjqQti5BYdH4SKqAAKb5v2494OjuUmh2oWrMRgcrCjs/uUf3levwn1Ou1seifJTP31lO9jvZg==
 
-"@exodus/grpc-js@1.1.3-exodus.1":
-  version "1.1.3-exodus.1"
-  resolved "https://registry.yarnpkg.com/@exodus/grpc-js/-/grpc-js-1.1.3-exodus.1.tgz#1c671eba28d6a7822710793f0a96ae74efb2ff67"
-  integrity sha512-SjORbc8l1WBj7IVMx5OZxBFMAX4Oy3c/Ab2QmnAcuF3N5tYnnTRkryNIV52+XaqYz1TyszAHCVcprxa6iMIe/g==
+"@exodus/grpc-js@1.1.3-exodus.3":
+  version "1.1.3-exodus.3"
+  resolved "https://registry.yarnpkg.com/@exodus/grpc-js/-/grpc-js-1.1.3-exodus.3.tgz#e2cadf1094d789158327f23079681efbca3700b5"
+  integrity sha512-A04Q2K2Pwl5NsmmVchlcZ6ROY5mAodblcrEtH+2WSYUOWFXb++pvf/mlZv58M8VPQ1woBpppgTVItLwQyU2g5g==
   dependencies:
     semver "^6.2.0"
 
