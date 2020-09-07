@@ -22,4 +22,12 @@ if grep -qrE '@grpc/grpc-js' lib; then
   exit -1
 fi
 
+grep -r '@improbable-eng/grpc-web' lib -l | \
+  xargs replace '@improbable-eng/grpc-web' '@exodus/improbable-eng-grpc-web-fork' --
+
+if grep -qrE "@improbable-eng/grpc-web" lib; then
+  echo "Error: @improbable-eng/grpc-web present"
+  exit -1
+fi
+
 echo "./lib patched!"
