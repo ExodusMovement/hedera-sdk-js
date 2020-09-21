@@ -25,6 +25,9 @@ export { HederaReceiptStatusError } from "./errors/HederaReceiptStatusError";
 export { Ed25519PrivateKey } from "./crypto/Ed25519PrivateKey";
 export { Ed25519PublicKey } from "./crypto/Ed25519PublicKey";
 export { PublicKey } from "./crypto/PublicKey";
+export { Mnemonic } from "./crypto/Mnemonic";
+export { MnemonicValidationResult } from "./crypto/MnemonicValidationResult";
+export { MnemonicValidationStatus } from "./crypto/MnemonicValidationStatus";
 export { KeyMismatchError } from "./crypto/KeyMismatchError";
 
 export { Hbar } from "./Hbar";
