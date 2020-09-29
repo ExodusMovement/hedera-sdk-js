@@ -8,30 +8,19 @@ export * from "./exports";
 
 const mainnetProxy = { "https://hedera-proxy.a.exodus.io": { shard: 0, realm: 0, account: 3 }};
 
-const testnetProxy = { "https://grpc-web.testnet.myhbarwallet.com": { shard: 0, realm: 0, account: 3 }};
-
-const previewnetProxy = { "https://grpc-web.previewnet.myhbarwallet.com": { shard: 0, realm: 0, account: 3 }};
-
 /** This implementation of `BaseClient` is exported for browser usage. */
 export class Client extends BaseClient {
     /**
      * If `network` is not specified, default url is a proxy to 0.testnet.hedera.com:50211 generously
      * hosted by MyHbarWallet.com. Mainnet proxy to come later.
      */
-    public constructor({ network = testnetProxy, operator }: ClientConfig) {
+    public constructor({ network, operator }: ClientConfig) {
+        if (!network) throw new Error("No network specified!")
         super(network, operator);
     }
 
     public static forMainnet(): Client {
         return new Client({ network: mainnetProxy });
-    }
-
-    public static forTestnet(): Client {
-        return new Client({ network: testnetProxy });
-    }
-
-    public static forPreviewnet(): Client {
-        return new Client({ network: previewnetProxy });
     }
 
     public static fromFile(): Promise<Client> {
