@@ -16,7 +16,7 @@ import { Ed25519PrivateKey } from "./crypto/Ed25519PrivateKey";
 import { Status } from "./Status";
 import * as base64 from "./encoding/base64";
 import UnaryMethodDefinition = grpc.UnaryMethodDefinition;
-import * as crypto from "./crypto/crypto";
+import { createHash } from "./crypto/crypto";
 import { HederaPrecheckStatusError } from "./errors/HederaPrecheckStatusError";
 
 /** signature/public key pairs are passed around as objects */
@@ -26,7 +26,7 @@ export interface SignatureAndKey {
 }
 
 function sha384Hash(data: Uint8Array): Uint8Array {
-    const hash = crypto.createHash('sha384');
+    const hash = createHash('sha384');
     hash.update(data);
     return hash.digest();
 }
