@@ -16,7 +16,7 @@ import { Ed25519PrivateKey } from "./crypto/Ed25519PrivateKey";
 import { Status } from "./Status";
 import * as base64 from "./encoding/base64";
 import UnaryMethodDefinition = grpc.UnaryMethodDefinition;
-import { createHash } from 'crypto';
+import { createHash } from "./crypto/crypto";
 import { HederaPrecheckStatusError } from "./errors/HederaPrecheckStatusError";
 
 /** signature/public key pairs are passed around as objects */

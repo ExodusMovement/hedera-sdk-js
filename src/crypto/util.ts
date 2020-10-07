@@ -1,4 +1,4 @@
-import * as crypto from "crypto";
+import * as crypto from "./crypto";
 import { Hmac, HashAlgorithm } from "./Hmac";
 
 // we could go through the whole BS of producing a DER-encoded structure but it's quite simple
