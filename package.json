@@ -72,6 +72,7 @@
     "lib/crypto/der.js",
     "lib/crypto/pkcs.js",
     "lib/crypto/util.js",
+    "lib/crypto/crypto.js",
     "lib/encoding/base64.js",
     "lib/errors/BadKeyError.js",
     "lib/errors/BadPemFileError.js",
