@@ -1,4 +1,4 @@
-import * as crypto from "./crypto"; // This breaks EncryptedPrivateKeyInfo because crypto.createDecipheriv === undefined
+import * as crypto from "./crypto";
 import { AsnType, decodeDer } from "./der";
 import { Pbkdf2 } from "./Pbkdf2";
 import { HashAlgorithm } from "./Hmac";
