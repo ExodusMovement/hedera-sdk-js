@@ -131,7 +131,11 @@
     "@stablelib/utf8": "^1.0.0",
     "bignumber.js": "^8.1.1",
     "bip39": "^2.6.0",
-    "tweetnacl": "^1.0.3"
+    "create-hash": "^1.2.0",
+    "create-hmac": "^1.1.7",
+    "pbkdf2": "^3.0.17",
+    "tweetnacl": "^1.0.3",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.13.0",
