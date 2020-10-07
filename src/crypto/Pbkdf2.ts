@@ -1,7 +1,7 @@
 import { HashAlgorithm } from "./Hmac";
 import * as utf8 from "@stablelib/utf8";
 import * as crypto from "./crypto";
-import promisify from "util.promisify";
+const promisify = require("util.promisify");
 
 export const pbkdf2 = promisify(crypto.pbkdf2);
 
