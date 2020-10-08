@@ -23,6 +23,24 @@ export class Pbkdf2 {
             utf8.encode(salt) :
             salt;
 
+        if (typeof window !== "undefined" && window != null) {
+            try {
+                const key = await window.crypto.subtle.importKey("raw", pass, {
+                    name: "PBKDF2",
+                    hash: algorithm
+                }, false, [ "deriveBits" ]);
+
+                return new Uint8Array(await window.crypto.subtle.deriveBits({
+                    name: "PBKDF2",
+                    hash: algorithm,
+                    salt: nacl,
+                    iterations
+                }, key, length << 3));
+            } catch {
+                // will fall through to crypto, which can be polyfilled using crypto-browserify
+            }
+        }
+
         switch (algorithm) {
             case HashAlgorithm.Sha256:
                 return pbkdf2(password, nacl, iterations, length, "sha256");

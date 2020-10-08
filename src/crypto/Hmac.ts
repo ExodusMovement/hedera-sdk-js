@@ -16,6 +16,20 @@ export class Hmac {
         const key = typeof secretKey === "string" ? utf8.encode(secretKey) : secretKey;
         const value = typeof data === "string" ? utf8.encode(data) : data;
 
+        if (typeof window !== "undefined") {
+            // Try SubtleCrypto if it exists, otherwise fallback to crypto-browserify
+            try {
+                const key_ = await window!.crypto.subtle.importKey("raw", key, {
+                    name: "HMAC",
+                    hash: algorithm
+                }, false, [ "sign" ]);
+
+                return new Uint8Array(await window!.crypto.subtle.sign("HMAC", key_, value));
+            } catch {
+                // will fall through to crypto, which can be polyfilled using crypto-browserify
+            }
+        }
+
         switch (algorithm) {
             case HashAlgorithm.Sha256:
                 return crypto.createHmac("SHA256", key).update(value).digest();
