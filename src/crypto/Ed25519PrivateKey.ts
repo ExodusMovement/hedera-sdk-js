@@ -9,7 +9,6 @@ import {
 import { RawKeyPair } from "./RawKeyPair";
 import { BadKeyError } from "../errors/BadKeyError";
 import { BadPemFileError } from "../errors/BadPemFileError";
-import { EncryptedPrivateKeyInfo } from "./pkcs";
 import { decodeDer } from "./der";
 import * as base64 from "../encoding/base64";
 import * as hex from "@stablelib/hex";
@@ -229,56 +228,5 @@ export class Ed25519PrivateKey {
         }
 
         return (raw ? "" : ed25519PrivKeyPrefix) + this._asStringRaw;
-    }
-
-    /**
-     * Recover a private key from a pem string; the private key may be encrypted.
-     *
-     * This method assumes the .pem file has been converted to a string already.
-     *
-     * If `passphrase` is not null or empty, this looks for the first `ENCRYPTED PRIVATE KEY`
-     * section and uses `passphrase` to decrypt it; otherwise, it looks for the first `PRIVATE KEY`
-     * section and decodes that as a DER-encoded Ed25519 private key.
-     */
-    public static async fromPem(pem: string, passphrase?: string): Promise<Ed25519PrivateKey> {
-        const beginTag = passphrase ? beginEncryptedPkey : beginPrivateKey;
-        const endTag = passphrase ? endEncryptedPkey : endPrivateKey;
-
-        const beginIndex = pem.indexOf(beginTag);
-        const endIndex = pem.indexOf(endTag);
-
-        if (beginIndex === -1 || endIndex === -1) {
-            throw new BadPemFileError();
-        }
-
-        const keyEncoded = pem.slice(beginIndex + beginTag.length, endIndex);
-
-        const key = base64.decode(keyEncoded);
-
-        if (passphrase) {
-            let encrypted;
-
-            try {
-                encrypted = EncryptedPrivateKeyInfo.parse(key);
-            } catch (error) {
-                throw new BadKeyError(`failed to parse encrypted private key: ${error.message}`);
-            }
-
-            const decrypted = await encrypted.decrypt(passphrase);
-
-            if (decrypted.algId.algIdent !== "1.3.101.112") {
-                throw new BadKeyError(`unknown private key algorithm ${decrypted.algId}`);
-            }
-
-            const keyData = decodeDer(decrypted.privateKey);
-
-            if ("bytes" in keyData) {
-                return Ed25519PrivateKey.fromBytes(keyData.bytes);
-            }
-
-            throw new BadKeyError(`expected ASN bytes, got ${JSON.stringify(keyData)}`);
-        }
-
-        return Ed25519PrivateKey.fromBytes(key);
     }
 }

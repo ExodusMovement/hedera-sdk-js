@@ -70,7 +70,6 @@
     "lib/crypto/Pbkdf2.js",
     "lib/crypto/PublicKey.js",
     "lib/crypto/der.js",
-    "lib/crypto/pkcs.js",
     "lib/crypto/util.js",
     "lib/crypto/crypto.js",
     "lib/encoding/base64.js",
