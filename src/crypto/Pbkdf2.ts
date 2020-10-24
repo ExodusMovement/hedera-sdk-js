@@ -43,11 +43,11 @@ export class Pbkdf2 {
 
         switch (algorithm) {
             case HashAlgorithm.Sha256:
-                return pbkdf2(password, nacl, iterations, length, "sha256");
+                return pbkdf2(password, Buffer.from(nacl), iterations, length, "sha256");
             case HashAlgorithm.Sha384:
-                return pbkdf2(password, nacl, iterations, length, "sha384");
+                return pbkdf2(password, Buffer.from(nacl), iterations, length, "sha384");
             case HashAlgorithm.Sha512:
-                return pbkdf2(password, nacl, iterations, length, "sha512");
+                return pbkdf2(password, Buffer.from(nacl), iterations, length, "sha512");
             default: throw new Error("(BUG) Non-Exhaustive switch statement for algorithms");
         }
     }
