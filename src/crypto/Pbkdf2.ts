@@ -1,9 +1,8 @@
 import { HashAlgorithm } from "./Hmac";
 import * as utf8 from "@stablelib/utf8";
 import * as crypto from "./crypto";
-const promisify = require("util.promisify");
 
-export const pbkdf2 = promisify(crypto.pbkdf2);
+export const pbkdf2 = (...args) => new Promise((resolve, reject) => crypto.pbkdf2(...args, (err, key) => err ? reject(err) : resolve(key)));
 
 export class Pbkdf2 {
     public static async deriveKey(
