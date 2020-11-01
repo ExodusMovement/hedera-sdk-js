@@ -1,6 +1,6 @@
 {
   "name": "@exodus/hashgraph-sdk",
-  "version": "1.3.0-exodus.19",
+  "version": "1.3.0-exodus.20",
   "description": "Hedera™ Hashgraph SDK for JavaScript/TypeScript",
   "main": "./lib/index-node.js",
   "browser": "./lib/index-web.js",
