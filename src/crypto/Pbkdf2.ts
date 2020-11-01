@@ -2,7 +2,12 @@ import { HashAlgorithm } from "./Hmac";
 import * as utf8 from "@stablelib/utf8";
 import * as crypto from "./crypto";
 
-export const pbkdf2 = (...args) => new Promise((resolve, reject) => crypto.pbkdf2(...args, (err, key) => err ? reject(err) : resolve(key)));
+export const pbkdf2 = (...args: Array<any>): Promise<Uint8Array> =>
+  new Promise(
+    (resolve, reject) =>
+      crypto.pbkdf2(...args, (err: any, key: Uint8Array) => err ? reject(err) : resolve(key)
+    )
+  );
 
 export class Pbkdf2 {
     public static async deriveKey(
