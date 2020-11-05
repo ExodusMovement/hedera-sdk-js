@@ -124,9 +124,9 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
-    "@exodus/google-protobuf": "3.13.0-exodus.1",
-    "@exodus/grpc-js": "1.1.3-exodus.4",
-    "@exodus/improbable-eng-grpc-web-fork": "0.13.0-exodus.0",
+    "@exodus/google-protobuf": "^3.13.0-exodus.1",
+    "@exodus/grpc-js": "^1.1.3-exodus.5",
+    "@exodus/improbable-eng-grpc-web-fork": "^0.13.0-exodus.0",
     "@stablelib/hex": "^1.0.0",
     "@stablelib/utf8": "^1.0.0",
     "bignumber.js": "^8.1.1",
