@@ -9,7 +9,7 @@ import * as proto from "@hashgraph/proto";
 import TokenRelationshipMap from "../account/TokenRelationshipMap.js";
 
 /**
- * @typedef {import("@hashgraph/cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
  */
 
 /**

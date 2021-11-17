@@ -1,6 +1,6 @@
 import FileId from "./FileId.js";
 import Timestamp from "../Timestamp.js";
-import { KeyList } from "@hashgraph/cryptography";
+import { KeyList } from "@exodus/hashgraph-cryptography";
 import Long from "long";
 import {
     keyListFromProtobuf,

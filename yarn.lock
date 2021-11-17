@@ -304,6 +304,19 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@exodus/hashgraph-cryptography@1.0.21-exodus.0":
+  version "1.0.21-exodus.0"
+  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.0.tgz#0f115ab1a622daff7d9e03b99a7138e624e85382"
+  integrity sha512-66us8MPw/0j1LmgtWL7TRA+ILCEzkk0NKR695qtZGxDLW4IoFZppbk8TwkPSUuJFmc2p9mtPcWzzId/LR34J+Q==
+  dependencies:
+    bignumber.js "^9.0.1"
+    crypto-js "^4.0.0"
+    expo-crypto "^9.2.0"
+    expo-random "^11.2.0"
+    js-base64 "^3.6.1"
+    tweetnacl "^1.0.3"
+    utf8 "^3.0.0"
+
 "@grpc/grpc-js@^1.3.4":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.4.4.tgz#59336f13d77bc446bbdf2161564a32639288dc5b"
@@ -312,7 +325,7 @@
     "@grpc/proto-loader" "^0.6.4"
     "@types/node" ">=12.12.47"
 
-"@grpc/proto-loader@^0.6.6", "@grpc/proto-loader@^0.6.4":
+"@grpc/proto-loader@^0.6.4", "@grpc/proto-loader@^0.6.6":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.7.tgz#e62a202f4cf5897bdd0e244dec1dbc80d84bdfa1"
   integrity sha512-QzTPIyJxU0u+r2qGe8VMl3j/W2ryhEvBv7hc42OjYfthSj370fUrb7na65rG6w3YLZS/fb8p89iTBobfWGDgdw==
@@ -322,19 +335,6 @@
     long "^4.0.0"
     protobufjs "^6.10.0"
     yargs "^16.1.1"
-
-"@hashgraph/cryptography@^1.0.20":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@hashgraph/cryptography/-/cryptography-1.0.21.tgz#9cce4c25c18df7fcace8b0a39d1c3ea12529fb3e"
-  integrity sha512-X48u9VJ/MssHxUEivc5HRhTBKRtjYFCLCYLWlm/vtrwXf2g/CEyOWF7iSxgoSzhGqDxYWjDnBpWcqsTOlm/MgQ==
-  dependencies:
-    bignumber.js "^9.0.1"
-    crypto-js "^4.0.0"
-    expo-crypto "^9.2.0"
-    expo-random "^11.2.0"
-    js-base64 "^3.6.1"
-    tweetnacl "^1.0.3"
-    utf8 "^3.0.0"
 
 "@hashgraph/proto@2.0.1-beta.2":
   version "2.0.1-beta.2"

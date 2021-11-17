@@ -18,7 +18,7 @@ import {
 import PrecheckStatusError from "../PrecheckStatusError.js";
 import AccountId from "../account/AccountId.js";
 import { arrayEqual } from "../array.js";
-import { PublicKey } from "@hashgraph/cryptography";
+import { PublicKey } from "@exodus/hashgraph-cryptography";
 
 /**
  * @typedef {import("bignumber.js").default} BigNumber
@@ -40,7 +40,7 @@ import { PublicKey } from "@hashgraph/cryptography";
 
 /**
  * @typedef {import("../schedule/ScheduleCreateTransaction.js").default} ScheduleCreateTransaction
- * @typedef {import("@hashgraph/cryptography").PrivateKey} PrivateKey
+ * @typedef {import("@exodus/hashgraph-cryptography").PrivateKey} PrivateKey
  * @typedef {import("../channel/Channel.js").default} Channel
  * @typedef {import("../client/Client.js").default<*, *>} Client
  */

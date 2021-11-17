@@ -1,4 +1,4 @@
-import { PublicKey } from "@hashgraph/cryptography";
+import { PublicKey } from "@exodus/hashgraph-cryptography";
 import ObjectMap from "../ObjectMap.js";
 
 /**
