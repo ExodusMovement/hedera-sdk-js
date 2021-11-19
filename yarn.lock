@@ -304,15 +304,14 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@exodus/hashgraph-cryptography@1.0.21-exodus.0":
-  version "1.0.21-exodus.0"
-  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.0.tgz#0f115ab1a622daff7d9e03b99a7138e624e85382"
-  integrity sha512-66us8MPw/0j1LmgtWL7TRA+ILCEzkk0NKR695qtZGxDLW4IoFZppbk8TwkPSUuJFmc2p9mtPcWzzId/LR34J+Q==
+"@exodus/hashgraph-cryptography@1.0.21-exodus.1":
+  version "1.0.21-exodus.1"
+  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.1.tgz#b7d7f53f96caff63e1740e8a474d17a76b856bff"
+  integrity sha512-ccSI4WfNtmeZvCMCWASIKWrZxus8T9bKRxIgJfRkGp3F1nDP558evqwZx6YbBvqWsduly3RNyF6v2rLWsqFUDQ==
   dependencies:
     bignumber.js "^9.0.1"
     crypto-js "^4.0.0"
     expo-crypto "^9.2.0"
-    expo-random "^11.2.0"
     js-base64 "^3.6.1"
     tweetnacl "^1.0.3"
     utf8 "^3.0.0"
@@ -1869,11 +1868,6 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-base64-js@^1.3.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
-  integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
-
 base64-js@^1.3.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
@@ -3216,13 +3210,6 @@ expo-crypto@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-9.2.0.tgz#5d124539836767c019297816f050b8bb73056297"
   integrity sha512-jc9E7jHlOT8fYs64DIsSOdnLtxtIK1pV78O/nBamPwKdGrvFSNqMSFndxyVSuEimBNoPPNRwN+4Pb4W1RRltJA==
-
-expo-random@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/expo-random/-/expo-random-11.2.0.tgz#245ff64c1d980fb45caa84e92ae396af0fd3c88e"
-  integrity sha512-kgBJBB02iCX/kpoTHN57V7b4hWOCj4eACIQDl7bN94lycUcZu62T00P/rVZIcE/29x0GAi+Pw5ZWj0NlqBsMQQ==
-  dependencies:
-    base64-js "^1.3.0"
 
 extend@~3.0.2:
   version "3.0.2"
