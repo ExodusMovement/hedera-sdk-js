@@ -1,6 +1,6 @@
 {
     "name": "@exodus/hashgraph-cryptography",
-    "version": "1.0.21-exodus.0",
+    "version": "1.0.21-exodus.1",
     "description": "Cryptographic utilities and primitives for the Hedera™ Hashgraph SDK",
     "main": "./lib/index.cjs",
     "types": "./lib/index.d.ts",
@@ -10,11 +10,11 @@
         "./src/encoding/base64.js": "./src/encoding/base64.native.js",
         "./src/encoding/hex.js": "./src/encoding/hex.native.js",
         "./src/encoding/utf8.js": "./src/encoding/utf8.native.js",
-        "./src/primitive/aes.js": "./src/primitive/aes.native.js",
-        "./src/primitive/sha256.js": "./src/primitive/sha256.native.js",
-        "./src/primitive/pbkdf2.js": "./src/primitive/pbkdf2.native.js",
-        "./src/primitive/hmac.js": "./src/primitive/hmac.native.js",
-        "./src/primitive/random.js": "./src/primitive/random.native.js"
+        "./src/primitive/aes.js": "./src/primitive/aes.js",
+        "./src/primitive/sha256.js": "./src/primitive/sha256.js",
+        "./src/primitive/pbkdf2.js": "./src/primitive/pbkdf2.js",
+        "./src/primitive/hmac.js": "./src/primitive/hmac.js",
+        "./src/primitive/random.js": "./src/primitive/random.js"
     },
     "browser": {
         "./src/index.js": "./src/index.js",
@@ -75,7 +75,6 @@
         "bignumber.js": "^9.0.1",
         "crypto-js": "^4.0.0",
         "expo-crypto": "^9.2.0",
-        "expo-random": "^11.2.0",
         "js-base64": "^3.6.1",
         "tweetnacl": "^1.0.3",
         "utf8": "^3.0.0"
