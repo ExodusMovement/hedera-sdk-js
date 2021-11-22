@@ -304,14 +304,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@exodus/hashgraph-cryptography@1.0.21-exodus.1":
-  version "1.0.21-exodus.1"
-  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.1.tgz#b7d7f53f96caff63e1740e8a474d17a76b856bff"
-  integrity sha512-ccSI4WfNtmeZvCMCWASIKWrZxus8T9bKRxIgJfRkGp3F1nDP558evqwZx6YbBvqWsduly3RNyF6v2rLWsqFUDQ==
+"@exodus/hashgraph-cryptography@1.0.21-exodus.2":
+  version "1.0.21-exodus.2"
+  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.2.tgz#85bb723d3b65fa717f8b7762a4ab8151700f7f5a"
+  integrity sha512-Un5PbNTWK2ndjZyKCAlXvNgDd1l6uq9LsPlipKluTYeA1hrFhliWYZBakEGMuZIo1GrXveD46kiZItZaJLbC+A==
   dependencies:
     bignumber.js "^9.0.1"
     crypto-js "^4.0.0"
-    expo-crypto "^9.2.0"
     js-base64 "^3.6.1"
     tweetnacl "^1.0.3"
     utf8 "^3.0.0"
@@ -3205,11 +3204,6 @@ execa@^5.0.0:
     onetime "^5.1.2"
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
-
-expo-crypto@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-9.2.0.tgz#5d124539836767c019297816f050b8bb73056297"
-  integrity sha512-jc9E7jHlOT8fYs64DIsSOdnLtxtIK1pV78O/nBamPwKdGrvFSNqMSFndxyVSuEimBNoPPNRwN+4Pb4W1RRltJA==
 
 extend@~3.0.2:
   version "3.0.2"

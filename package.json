@@ -79,7 +79,7 @@
         "test:integration:browser:safari": "vite -c vite.config.cjs serve --port 9013 test/ & sleep 10; mocha-webdriver-runner --safari http://localhost:9013/integration.html"
     },
     "dependencies": {
-        "@exodus/hashgraph-cryptography": "1.0.21-exodus.1",
+        "@exodus/hashgraph-cryptography": "1.0.21-exodus.2",
         "@grpc/grpc-js": "^1.3.4",
         "@hashgraph/proto": "2.0.1-beta.2",
         "bignumber.js": "^9.0.1",
