@@ -3,16 +3,16 @@
     "version": "2.5.0-exodus.1",
     "description": "Hedera™ Hashgraph SDK",
     "types": "./lib/index.d.ts",
-    "main": "./lib/index.cjs",
+    "main": "./lib/browser.cjs",
     "module": "./src/browser.js",
     "react-native": {
-        "./lib/index.cjs": "./src/native.js",
+        "./lib/browser.cjs": "./src/native.js",
         "./src/encoding/hex.js": "./src/encoding/hex.native.js",
         "./src/encoding/utf8.js": "./src/encoding/utf8.native.js",
         "./src/cryptography/sha384.js": "./src/cryptography/sha384.js"
     },
     "browser": {
-        "./src/index.js": "./src/browser.js",
+        "./src/browser.js": "./src/browser.js",
         "./src/encoding/hex.js": "./src/encoding/hex.browser.js",
         "./src/encoding/utf8.js": "./src/encoding/utf8.browser.js",
         "./src/cryptography/sha384.js": "./src/cryptography/sha384.browser.js",
@@ -21,9 +21,10 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "import": "./src/index.js",
-            "require": "./lib/index.cjs"
-        }
+            "import": "./src/browser.js",
+            "require": "./lib/browser.cjs"
+        },
+        "./lib/transaction/SignatureMap.cjs": "./lib/transaction/SignatureMap.cjs"
     },
     "license": "Apache-2.0",
     "author": "Launchbadge <contact@launchbadge.com>",
