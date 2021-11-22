@@ -34,13 +34,13 @@ import Transaction, {
 
 /**
  * @typedef {import("bignumber.js").default} BigNumber
- * @typedef {import("@hashgraph/cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
  * @typedef {import("../channel/Channel.js").default} Channel
  * @typedef {import("../client/Client.js").default<*, *>} Client
  * @typedef {import("../Timestamp.js").default} Timestamp
  * @typedef {import("../transaction/TransactionId.js").default} TransactionId
  * @typedef {import("../account/AccountId.js").default} AccountId
- * @typedef {import("@hashgraph/cryptography").PublicKey} PublicKey
+ * @typedef {import("@exodus/hashgraph-cryptography").PublicKey} PublicKey
  */
 
 /**

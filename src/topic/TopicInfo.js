@@ -7,7 +7,7 @@ import Duration from "../Duration.js";
 import * as proto from "@hashgraph/proto";
 
 /**
- * @typedef {import("@hashgraph/cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
  */
 
 /**

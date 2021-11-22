@@ -1,5 +1,5 @@
 import AccountId from "./AccountId.js";
-import { KeyList } from "@hashgraph/cryptography";
+import { KeyList } from "@exodus/hashgraph-cryptography";
 import {
     keyListFromProtobuf,
     keyListToProtobuf,

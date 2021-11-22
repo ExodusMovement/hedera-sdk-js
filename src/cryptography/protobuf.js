@@ -1,4 +1,4 @@
-import { KeyList, PrivateKey, PublicKey } from "@hashgraph/cryptography";
+import { KeyList, PrivateKey, PublicKey } from "@exodus/hashgraph-cryptography";
 import ContractId from "../contract/ContractId.js";
 
 /**
@@ -9,7 +9,7 @@ import ContractId from "../contract/ContractId.js";
  */
 
 /**
- * @typedef {import("@hashgraph/cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
  */
 
 /**

@@ -33,8 +33,8 @@ import TransactionId from "../transaction/TransactionId.js";
  */
 
 /**
- * @typedef {import("@hashgraph/cryptography").Key} Key
- * @typedef {import("@hashgraph/cryptography").KeyList} KeyList
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").KeyList} KeyList
  */
 
 /**

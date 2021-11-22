@@ -28,7 +28,7 @@ import TokenDecimalMap from "./TokenDecimalMap.js";
  */
 
 /**
- * @typedef {import("@hashgraph/cryptography").Key} Key
+ * @typedef {import("@exodus/hashgraph-cryptography").Key} Key
  */
 
 export default class AccountBalance {
