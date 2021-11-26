@@ -10,7 +10,7 @@ export default class NodeAccountIdSignatureMap extends ObjectMap {
     }
 
     /**
-     * @param {import("@hashgraph/proto").ISignatureMap} sigMap
+     * @param {import("@exodus/hashgraph-proto").ISignatureMap} sigMap
      * @returns {NodeAccountIdSignatureMap}
      */
     static _fromTransactionSigMap(sigMap) {

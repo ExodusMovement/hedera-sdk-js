@@ -12,14 +12,14 @@ import Duration from "../Duration.js";
 
 /**
  * @namespace proto
- * @typedef {import("@hashgraph/proto").ITransaction} proto.ITransaction
- * @typedef {import("@hashgraph/proto").ISignedTransaction} proto.ISignedTransaction
- * @typedef {import("@hashgraph/proto").TransactionBody} proto.TransactionBody
- * @typedef {import("@hashgraph/proto").ITransactionBody} proto.ITransactionBody
- * @typedef {import("@hashgraph/proto").ITransactionResponse} proto.ITransactionResponse
- * @typedef {import("@hashgraph/proto").IContractCreateTransactionBody} proto.IContractCreateTransactionBody
- * @typedef {import("@hashgraph/proto").IAccountID} proto.IAccountID
- * @typedef {import("@hashgraph/proto").IFileID} proto.IFileID
+ * @typedef {import("@exodus/hashgraph-proto").ITransaction} proto.ITransaction
+ * @typedef {import("@exodus/hashgraph-proto").ISignedTransaction} proto.ISignedTransaction
+ * @typedef {import("@exodus/hashgraph-proto").TransactionBody} proto.TransactionBody
+ * @typedef {import("@exodus/hashgraph-proto").ITransactionBody} proto.ITransactionBody
+ * @typedef {import("@exodus/hashgraph-proto").ITransactionResponse} proto.ITransactionResponse
+ * @typedef {import("@exodus/hashgraph-proto").IContractCreateTransactionBody} proto.IContractCreateTransactionBody
+ * @typedef {import("@exodus/hashgraph-proto").IAccountID} proto.IAccountID
+ * @typedef {import("@exodus/hashgraph-proto").IFileID} proto.IFileID
  */
 
 /**
