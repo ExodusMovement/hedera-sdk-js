@@ -3,9 +3,9 @@ import ContractId from "../contract/ContractId.js";
 
 /**
  * @namespace proto
- * @typedef {import("@hashgraph/proto").IKey} proto.IKey
- * @typedef {import("@hashgraph/proto").IKeyList} proto.IKeyList
- * @typedef {import("@hashgraph/proto").IThresholdKey} proto.IThresholdKey
+ * @typedef {import("@exodus/hashgraph-proto").IKey} proto.IKey
+ * @typedef {import("@exodus/hashgraph-proto").IKeyList} proto.IKeyList
+ * @typedef {import("@exodus/hashgraph-proto").IThresholdKey} proto.IThresholdKey
  */
 
 /**
