@@ -23,8 +23,7 @@
         ".": {
             "import": "./src/browser.js",
             "require": "./lib/browser.cjs"
-        },
-        "./lib/transaction/SignatureMap.cjs": "./lib/transaction/SignatureMap.cjs"
+        }
     },
     "license": "Apache-2.0",
     "author": "Launchbadge <contact@launchbadge.com>",
