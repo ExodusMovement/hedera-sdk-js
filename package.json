@@ -112,7 +112,7 @@
         "chromedriver": "^95.0.0",
         "dotenv": "^10.0.0",
         "dpdm": "^3.8.0",
-        "eslint": "^7.32.0",
+        "eslint": "^8.3.0",
         "eslint-plugin-chai-expect": "^3.0.0",
         "eslint-plugin-compat": "^3.13.0",
         "eslint-plugin-deprecation": "^1.2.1",
