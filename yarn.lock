@@ -1356,10 +1356,8 @@
     browserify-aes "^1.2.0"
     create-hash "^1.2.0"
     create-hmac "^1.1.0"
-    js-base64 "^3.6.1"
     pbkdf2 "^3.0.17"
     tweetnacl "^1.0.3"
-    utf8 "^3.0.0"
 
 "@types/exodus__hashgraph-proto@file:./packages/proto":
   version "2.0.1-beta.2.exodus.4"
@@ -4765,6 +4763,11 @@ long@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
   integrity sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
+
+long@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/long/-/long-5.2.0.tgz#2696dadf4b4da2ce3f6f6b89186085d94d52fd61"
+  integrity sha512-9RTUNjK60eJbx3uz+TEGF7fUr29ZDxR5QzXcyDpeSfeH28S9ycINflOgOlppit5U+4kNTe83KQnMEerw7GmE8w==
 
 lowercase-keys@^2.0.0:
   version "2.0.0"
