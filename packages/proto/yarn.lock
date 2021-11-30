@@ -286,9 +286,9 @@
     strip-json-comments "^3.1.1"
 
 "@exodus/protobufjs@^6.11.1-minimal-exodus.1":
-  version "6.11.1-minimal-exodus.1"
-  resolved "https://registry.yarnpkg.com/@exodus/protobufjs/-/protobufjs-6.11.1-minimal-exodus.1.tgz#6fcb05f0455eb745fe581184f10a5a7f3888a6a8"
-  integrity sha512-52CneXuuC7jNmqDk6b/qdpf8arM82Rf7fHyujngwwKLKNJTUZf11AKYs/Z+4bbBwC26uj7GUo1cWgApEWhGJMw==
+  version "6.11.1-minimal-exodus.2"
+  resolved "https://registry.yarnpkg.com/@exodus/protobufjs/-/protobufjs-6.11.1-minimal-exodus.2.tgz#f569843b6e60cd043ab320773a297e1d2a514072"
+  integrity sha512-PSa9hO6XaXagjGpuBmbH57AUugsxe7YyShSLS0SYB7tSXhrWy67OtT2Wp0YO2UE1k4npZGmq4+N+ns1KDtjySQ==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
