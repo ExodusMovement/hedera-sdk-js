@@ -1356,10 +1356,8 @@
     browserify-aes "^1.2.0"
     create-hash "^1.2.0"
     create-hmac "^1.1.0"
-    js-base64 "^3.6.1"
     pbkdf2 "^3.0.17"
     tweetnacl "^1.0.3"
-    utf8 "^3.0.0"
 
 "@types/exodus__hashgraph-proto@file:./packages/proto":
   version "2.0.1-beta.2.exodus.4"
@@ -1428,10 +1426,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@>= 8", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^16.10.2":
-  version "16.11.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.7.tgz#36820945061326978c42a01e56b61cd223dfdc42"
-  integrity sha512-QB5D2sqfSjCmTuWcBWyJ+/44bcjO7VbjSbOE0ucoVbAsSNQc4Lt6QkgkVXkTDwkL4z/beecZNDvVX15D4P8Jbw==
+"@types/node@*", "@types/node@>= 8", "@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@^16.11.11":
+  version "16.11.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.11.tgz#6ea7342dfb379ea1210835bada87b3c512120234"
+  integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
