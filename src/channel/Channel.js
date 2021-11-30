@@ -235,8 +235,8 @@ export function encodeRequest(data) {
  * @param {ArrayBuffer} data
  * @returns {Uint8Array}
  */
-export function decodeUnaryResponse(data) {
-    let dataOffset = 0;
+export function decodeUnaryResponse(data, offset = 0, byteLength = data.byteLength) {
+    let dataOffset = offset;
 
     /** @type {?Uint8Array} */
     let unaryResponse = null;
@@ -244,7 +244,7 @@ export function decodeUnaryResponse(data) {
     // 0 = successful
     let status = 0;
 
-    while (dataOffset < data.byteLength) {
+    while (dataOffset < byteLength) {
         const dataView = new DataView(data, dataOffset);
         const frameByte = dataView.getUint8(0);
         const frameType = frameByte >> 7;
