@@ -10,7 +10,6 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "import": "./src/browser.js",
             "require": "./lib/browser.cjs"
         }
     },
