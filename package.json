@@ -6,8 +6,7 @@
     "main": "./lib/browser.cjs",
     "module": "./src/browser.js",
     "react-native": {
-        "./lib/browser.cjs": "./src/native.js",
-        "./src/cryptography/sha384.js": "./src/cryptography/sha384.js"
+        "./lib/browser.cjs": "./lib/native.cjs"
     },
     "browser": {
         "./src/browser.js": "./src/browser.js",
