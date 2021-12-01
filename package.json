@@ -4,20 +4,12 @@
     "description": "Hedera™ Hashgraph SDK",
     "types": "./lib/index.d.ts",
     "main": "./lib/browser.cjs",
-    "module": "./src/browser.js",
     "react-native": {
-        "./lib/browser.cjs": "./src/native.js",
-        "./src/cryptography/sha384.js": "./src/cryptography/sha384.js"
-    },
-    "browser": {
-        "./src/browser.js": "./src/browser.js",
-        "./src/cryptography/sha384.js": "./src/cryptography/sha384.browser.js",
-        "crypto": false
+        "./lib/browser.cjs": "./lib/native.cjs"
     },
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "import": "./src/browser.js",
             "require": "./lib/browser.cjs"
         }
     },
