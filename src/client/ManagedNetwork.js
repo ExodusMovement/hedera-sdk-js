@@ -42,7 +42,7 @@ export default class MangedNetwork {
          */
         this._nodes = [];
 
-        /** @type {(address: string, cert?: string) => ChannelT} */
+        /** @type {(address: string) => ChannelT} */
         this._createNetworkChannel = createNetworkChannel;
 
         /** @type {string | null} */

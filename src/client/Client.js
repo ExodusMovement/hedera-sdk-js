@@ -3,7 +3,6 @@ import AccountBalanceQuery from "../account/AccountBalanceQuery.js";
 import { PrivateKey, PublicKey } from "@exodus/hashgraph-cryptography";
 import Hbar from "../Hbar.js";
 import Network from "./Network.js";
-
 /**
  * @typedef {import("../channel/Channel.js").default} Channel
  */
@@ -260,7 +259,7 @@ export default class Client {
      * Set the maximum payment allowable for queries.
      *
      * @param {Hbar} maxQueryPayment
-     * @returns {Client<ChannelT, MirrorChannelT>}
+     * @returns {Client<ChannelT, *>}
      */
     setMaxQueryPayment(maxQueryPayment) {
         this._maxQueryPayment = maxQueryPayment;
