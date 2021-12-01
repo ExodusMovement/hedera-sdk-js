@@ -304,10 +304,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@exodus/hashgraph-cryptography@^1.0.21-exodus.6":
-  version "1.0.21-exodus.6"
-  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.6.tgz#8f84a0d8b9a14764f7810f25e2e278ad14e7cf6f"
-  integrity sha512-i1hGEEkIIEDBO5yZlbVNXu4C7RxErE6wgBCSyHjKSBJ+MyBgVFhhrz7DJMupyusDRpxCvoSZOMnHRNdIA/6feA==
+"@exodus/hashgraph-cryptography@^1.0.21-exodus.11":
+  version "1.0.21-exodus.11"
+  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-cryptography/-/hashgraph-cryptography-1.0.21-exodus.11.tgz#dcefc68869ca13dcff11bec3d08394db03353494"
+  integrity sha512-kmjyStW0qpFO51Mjto1sNGWRFf4gdhrxxf5tslYJ+0HRCeIPIoL42BUL47Kb5OtkckgEn0sEyJec4RxcF8wl7A==
   dependencies:
     bignumber.js "^9.0.1"
     browserify-aes "^1.2.0"
@@ -316,10 +316,10 @@
     pbkdf2 "^3.0.17"
     tweetnacl "^1.0.3"
 
-"@exodus/hashgraph-proto@^2.0.1-beta.2.exodus.6":
-  version "2.0.1-beta.2.exodus.6"
-  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-proto/-/hashgraph-proto-2.0.1-beta.2.exodus.6.tgz#3989caa9a5c53cf34c226c51955aead59c792b30"
-  integrity sha512-+LbJwWoi+nAt80zjfoEfXHtz8z07fe3J+BymDMwZOS4VM6UfOpWhHDz2nh36zmkV5s15bEmuaYouS2OCW4hnBA==
+"@exodus/hashgraph-proto@^2.0.1-beta.2.exodus.11":
+  version "2.0.1-beta.2.exodus.11"
+  resolved "https://registry.yarnpkg.com/@exodus/hashgraph-proto/-/hashgraph-proto-2.0.1-beta.2.exodus.11.tgz#622674e3601729008f183a4e725f3c59f006cd2b"
+  integrity sha512-AeMJU4Fb8Vcr5KW1/+ItbZAw8Xamu/T8aCUZc6fWT4/oW+bBoeLyN3MSUf+84nSfX+N7o64E//LJSEwouzVNcg==
   dependencies:
     "@exodus/protobufjs" "^6.11.1-minimal-exodus.1"
 
@@ -1364,7 +1364,7 @@
     "@types/node" "*"
 
 "@types/exodus__hashgraph-cryptography@file:./packages/cryptography":
-  version "1.0.21-exodus.6"
+  version "1.0.21-exodus.11"
   dependencies:
     bignumber.js "^9.0.1"
     browserify-aes "^1.2.0"
@@ -1374,7 +1374,7 @@
     tweetnacl "^1.0.3"
 
 "@types/exodus__hashgraph-proto@file:./packages/proto":
-  version "2.0.1-beta.2.exodus.6"
+  version "2.0.1-beta.2.exodus.11"
   dependencies:
     "@exodus/protobufjs" "^6.11.1-minimal-exodus.1"
 
