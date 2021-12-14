@@ -6,7 +6,6 @@ import Network from "./Network.js";
 
 /**
  * @typedef {import("../channel/Channel.js").default} Channel
- * @typedef {import("../channel/MirrorChannel.js").default} MirrorChannel
  */
 
 /**
@@ -35,7 +34,7 @@ import Network from "./Network.js";
 /**
  * @abstract
  * @template {Channel} ChannelT
- * @template {MirrorChannel} MirrorChannelT
+ * @template {null} MirrorChannelT
  */
 export default class Client {
     /**

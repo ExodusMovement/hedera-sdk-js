@@ -2,7 +2,6 @@ import fs from "fs";
 import util from "util";
 import Client from "./Client.js";
 import NodeChannel from "../channel/NodeChannel.js";
-import NodeMirrorChannel from "../channel/NodeMirrorChannel.js";
 import AccountId from "../account/AccountId.js";
 import NetworkName from "../NetworkName.js";
 
@@ -73,7 +72,7 @@ export const Network = {
 };
 
 /**
- * @augments {Client<NodeChannel, NodeMirrorChannel>}
+ * @augments {Client<NodeChannel, null>}
  */
 export default class NodeClient extends Client {
     /**
