@@ -148,13 +148,6 @@ export default class Client {
     }
 
     /**
-     * @returns {string[]}
-     */
-    get mirrorNetwork() {
-        return this._mirrorNetwork.network;
-    }
-
-    /**
      * @param {boolean} signOnDemand
      */
     setSignOnDemand(signOnDemand) {
