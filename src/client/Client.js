@@ -30,7 +30,6 @@ import MirrorNetwork from "./MirrorNetwork.js";
 /**
  * @typedef {object} ClientConfiguration
  * @property {{[key: string]: (string | AccountId)} | NetworkName} network
- * @property {string[] | NetworkName | string} [mirrorNetwork]
  * @property {Operator} [operator]
  */
 
