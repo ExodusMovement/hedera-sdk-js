@@ -3,7 +3,6 @@ import AccountBalanceQuery from "../account/AccountBalanceQuery.js";
 import { PrivateKey, PublicKey } from "@exodus/hashgraph-cryptography";
 import Hbar from "../Hbar.js";
 import Network from "./Network.js";
-import MirrorNetwork from "./MirrorNetwork.js";
 
 /**
  * @typedef {import("../channel/Channel.js").default} Channel
@@ -45,16 +44,6 @@ export default class Client {
      * @param {ClientConfiguration} [props]
      */
     constructor(props) {
-        /**
-         * List of mirror network URLs.
-         *
-         * @internal
-         * @type {MirrorNetwork}
-         */
-        this._mirrorNetwork = new MirrorNetwork(
-            this._createMirrorNetworkChannel()
-        );
-
         /**
          * Map of node account ID (as a string)
          * to the node URL.
@@ -136,15 +125,6 @@ export default class Client {
      */
     get network() {
         return this._network.network;
-    }
-
-    /**
-     * @param {string[] | string | NetworkName} mirrorNetwork
-     * @returns {void}
-     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setMirrorNetwork(mirrorNetwork) {
-        throw new Error("not implemented");
     }
 
     /**
@@ -453,7 +433,6 @@ export default class Client {
      */
     close() {
         this._network.close();
-        this._mirrorNetwork.close();
     }
 
     /**
@@ -461,14 +440,6 @@ export default class Client {
      * @returns {(address: string) => ChannelT}
      */
     _createNetworkChannel() {
-        throw new Error("not implemented");
-    }
-
-    /**
-     * @abstract
-     * @returns {(address: string) => MirrorChannelT}
-     */
-    _createMirrorNetworkChannel() {
         throw new Error("not implemented");
     }
 }
