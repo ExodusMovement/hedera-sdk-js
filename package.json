@@ -1,9 +1,10 @@
 {
     "name": "@exodus/hashgraph-sdk",
-    "version": "2.6.0-exodus.11",
+    "version": "2.6.0-exodus.12",
     "description": "Hedera™ Hashgraph SDK",
     "types": "./lib/index.d.ts",
-    "main": "./lib/browser.cjs",
+    "main": "../src/index.js",
+    "module": "./src/index.js",
     "react-native": {
         "./lib/browser.cjs": "./lib/native.cjs"
     },
@@ -11,6 +12,7 @@
         "./package.json": "./package.json",
         ".": {
             "require": "./lib/browser.cjs"
+            "import": "./src/index.js"
         }
     },
     "license": "Apache-2.0",
