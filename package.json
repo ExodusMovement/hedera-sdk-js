@@ -11,7 +11,7 @@
     "exports": {
         "./package.json": "./package.json",
         ".": {
-            "require": "./lib/browser.cjs"
+            "require": "./lib/browser.cjs",
             "import": "./src/index.js"
         }
     },
