@@ -1,11 +1,18 @@
 {
     "name": "@exodus/hashgraph-proto",
-    "version": "2.0.1-beta.2.exodus.11",
+    "version": "2.0.1-beta.2.exodus.12",
     "description": "Protobufs for the Hedera™ Hashgraph SDK",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "license": "Apache-2.0",
     "author": "Launchbadge <contact@launchbadge.com>",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "import": "./lib/index.js",
+            "require": "./lib/index.js"
+        }
+    },
     "repository": "https://github.com/hashgraph/hedera-sdk-js",
     "bugs": "https://github.com/hashgraph/hedera-sdk-js/issues",
     "keywords": [
