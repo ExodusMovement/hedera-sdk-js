@@ -287,8 +287,10 @@ export default class Executable {
      */
     _shouldRetryExceptionally(error) {
         return (
+            error.status._code === GrpcStatus.Timeout._code ||
             error.status._code === GrpcStatus.Unavailable._code ||
             error.status._code === GrpcStatus.ResourceExhausted._code ||
+            error.status._code === GrpcStatus.GrpcWeb._code ||
             (error.status._code === GrpcStatus.Internal._code &&
                 RST_STREAM.test(error.message))
         );
