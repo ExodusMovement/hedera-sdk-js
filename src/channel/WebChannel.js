@@ -47,6 +47,18 @@ export default class WebChannel extends Channel {
                     }
                 );
 
+                // Check headers for gRPC errors
+                const grpcStatus = response.headers.get("grpc-status");
+                const grpcMessage = response.headers.get("grpc-message");
+                if (grpcStatus != null && grpcMessage != null) {
+                    const error = new GrpcServiceError(
+                        GrpcStatus._fromValue(parseInt(grpcStatus)),
+                    );
+                    error.message = grpcMessage;
+                    callback(error, null);
+                }
+ 
+
                 const responseBuffer = await response.arrayBuffer();
                 const unaryResponse = decodeUnaryResponse(responseBuffer);
 
