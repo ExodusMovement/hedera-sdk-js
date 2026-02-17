@@ -64,7 +64,7 @@
         "@exodus/hashgraph-cryptography": "^1.0.21-exodus.13",
         "@exodus/hashgraph-proto": "^2.0.1-beta.2.exodus.11",
         "bignumber.js": "^9.0.1",
-        "long": "^4.0.0"
+        "long": "^5.3.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.15.7",
@@ -78,7 +78,7 @@
         "@types/exodus__hashgraph-proto": "file:./packages/proto",
         "@types/chai": "^4.2.22",
         "@types/create-hash": "^1.2.0",
-        "@types/long": "^4.0.1",
+        "@types/long": "^5.0.0",
         "@types/node": "^16.10.2",
         "@types/utf8": "^3.0.0",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
