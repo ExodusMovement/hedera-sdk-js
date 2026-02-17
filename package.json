@@ -88,7 +88,7 @@
         "chai": "^4.3.4",
         "chromedriver": "^96.0.0",
         "dotenv": "^10.0.0",
-        "dpdm": "^3.8.0",
+        "dpdm": "^4.0.1",
         "eslint": "^7.32.0",
         "eslint-plugin-chai-expect": "^3.0.0",
         "eslint-plugin-compat": "^4.0.0",
