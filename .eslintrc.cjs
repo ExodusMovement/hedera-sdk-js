@@ -40,20 +40,11 @@ module.exports = {
         // sometimes we need this with jsdoc typing
         "@typescript-eslint/ban-ts-comment": "off",
 
-        // some typescript type productions do not parse
-        "jsdoc/valid-types": "off",
-        "jsdoc/no-undefined-types": "off",
-
-        // opt-out of providing descriptions for params, returns, and property
-        "jsdoc/require-property-description": "off",
-        "jsdoc/require-returns-description": "off",
-        "jsdoc/require-param-description": "off",
-        "jsdoc/check-tag-names": [
-            "warn",
-            {
-                definedTags: ["internal"],
-            },
-        ],
+        // NOTE: `eslint-plugin-jsdoc` is not installed in this fork, so
+        // jsdoc/* rules and inline disable directives previously caused
+        // "Definition for rule ... was not found" errors. Rules removed and
+        // any dangling `eslint-disable-next-line jsdoc/...` directives in
+        // source were cleaned up to keep the lint baseline clean.
 
         // reports usage of deprecated code
         // <https://github.com/gund/eslint-plugin-deprecation>

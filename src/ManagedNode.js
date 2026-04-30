@@ -79,7 +79,7 @@ export default class ManagedNode {
             this._minBackoff = props.cloneNode.node._minBackoff;
 
             /** @type {number} */
-            this._maxBackoff = props.cloneNode.node._minBackoff;
+            this._maxBackoff = props.cloneNode.node._maxBackoff;
         } else {
             throw new Error(
                 `failed to create ManagedNode: ${JSON.stringify(props)}`
@@ -91,7 +91,6 @@ export default class ManagedNode {
      * @abstract
      * @returns {string}
      */
-    // eslint-disable-next-line jsdoc/require-returns-check
     getKey() {
         throw new Error("not implemented");
     }
@@ -100,7 +99,6 @@ export default class ManagedNode {
      * @abstract
      * @returns {ManagedNode<ChannelT>}
      */
-    // eslint-disable-next-line jsdoc/require-returns-check
     toInsecure() {
         throw new Error("not implemented");
     }
@@ -109,7 +107,6 @@ export default class ManagedNode {
      * @abstract
      * @returns {ManagedNode<ChannelT>}
      */
-    // eslint-disable-next-line jsdoc/require-returns-check
     toSecure() {
         throw new Error("not implemented");
     }
@@ -170,7 +167,7 @@ export default class ManagedNode {
 
     getChannel() {
         this._useCount++;
-        this.__lastUsed = Date.now();
+        this._lastUsed = Date.now();
 
         if (this._channel != null) {
             return this._channel;
@@ -183,10 +180,9 @@ export default class ManagedNode {
     }
 
     /**
-     * Determines if this node is healthy by checking if this node hasn't been
-     * in use for a the required `_currentBackoff` period. Since this looks at `this._lastUsed`
-     * and that value is only set in the `wait()` method, any node that has not
-     * returned a bad gRPC status will always be considered healthy.
+     * Determines if this node is healthy by checking whether the current backoff
+     * window has expired. The window is set forward by `increaseDelay()` /
+     * `recordFailure()` after retryable failures.
      *
      * @returns {boolean}
      */
@@ -210,6 +206,26 @@ export default class ManagedNode {
     }
 
     /**
+     * Mark this node as having just produced a retryable failure. Increments
+     * `_attempts` so that `setMaxNodeAttempts()` can prune persistently failing
+     * nodes, and increases the backoff window so this node is skipped while it
+     * recovers.
+     */
+    recordFailure() {
+        this._attempts += 1;
+        this.increaseDelay();
+    }
+
+    /**
+     * Mark this node as having just produced a successful response. Resets
+     * `_attempts` so the node is not pruned, and decreases the backoff window.
+     */
+    recordSuccess() {
+        this._attempts = 0;
+        this.decreaseDelay();
+    }
+
+    /**
      * This is only ever called if the node itself is down.
      * A node returning a transaction with a bad status code does not indicate
      * the node is down, and hence this method will not be called.
@@ -217,8 +233,8 @@ export default class ManagedNode {
      * @returns {Promise<void>}
      */
     wait() {
-        const _currentBackoff = this._backoffUntil - this._lastUsed;
-        return new Promise((resolve) => setTimeout(resolve, _currentBackoff));
+        const remaining = Math.max(this._backoffUntil - Date.now(), 0);
+        return new Promise((resolve) => setTimeout(resolve, remaining));
     }
 
     /**
