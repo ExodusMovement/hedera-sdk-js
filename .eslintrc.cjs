@@ -23,7 +23,7 @@ module.exports = {
         sourceType: "module",
         warnOnUnsupportedTypeScriptVersion: false,
     },
-    plugins: ["@typescript-eslint", "deprecation", "ie11"],
+    plugins: ["@typescript-eslint", "deprecation", "ie11", "jsdoc"],
     rules: {
         // does not handle return types being annotated in a type comment
         "@typescript-eslint/explicit-function-return-type": "off",
@@ -36,9 +36,14 @@ module.exports = {
                 ignores: ["dynamicImport", "modules"],
             },
         ],
+        "node/no-missing-import": "off",
 
         // sometimes we need this with jsdoc typing
         "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
 
         // some typescript type productions do not parse
         "jsdoc/valid-types": "off",
