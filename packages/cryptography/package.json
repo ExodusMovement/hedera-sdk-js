@@ -27,6 +27,7 @@
         "last 1 Firefox versions"
     ],
     "scripts": {
+        "cp:ts": "node -e \"require('fs').copyFileSync('src/index.d.ts', 'lib/index.d.ts')\"",
         "docs": "typedoc --theme minimal --mode modules --excludeNotExported --excludePrivate --excludeProtected --out docs --listInvalidSymbolLinks",
         "compile": "babel src -d lib",
         "lint": "run-s lint:*",

@@ -29,7 +29,7 @@ export default class NativeChannel extends Channel {
      * @override
      * @protected
      * @param {string} serviceName
-     * @returns {import("@exodus/protobufjs/minimal").RPCImpl}
+     * @returns {import("@exodus/protobufjs/minimal.js").RPCImpl}
      */
     _createUnaryClient(serviceName) {
         return async (method, requestData, callback) => {
@@ -98,14 +98,17 @@ export default class NativeChannel extends Channel {
                 }
     
                 const unaryResponse = decodeUnaryResponse(
-                    responseBuffer.buffer,
+                    /** @type {ArrayBuffer} */ (responseBuffer.buffer),
                     responseBuffer.byteOffset,
                     responseBuffer.byteLength
                 );
     
                 callback(null, unaryResponse);
             } catch (error) {
-                callback(error, null);
+                callback(
+                    error instanceof Error ? error : new Error(String(error)),
+                    null
+                );
             }
         };
     }
