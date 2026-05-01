@@ -3,104 +3,112 @@ name: Build
 on:
   push:
     branches:
+      - exodus
       - main
       - develop
   pull_request:
     branches:
+      - exodus
       - main
       - develop
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '12', '14', '16' ]
+        node: [ '22', '24' ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-pnpm-modules
+      - uses: pnpm/action-setup@v4
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+          version: 9.15.5
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - name: Configure pnpm store
+        run: pnpm config set store-dir ~/.pnpm-store
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v4
         with:
-          version: 6.0.2
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ matrix.node }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{ matrix.node }}-
 
       - name: Build
-        run: pnpm install --force
+        run: pnpm install --force --no-frozen-lockfile
 
   lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '12', '14', '16' ]
+        node: [ '22', '24' ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-pnpm-modules
+      - uses: pnpm/action-setup@v4
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+          version: 9.15.5
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - name: Configure pnpm store
+        run: pnpm config set store-dir ~/.pnpm-store
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v4
         with:
-          version: 6.0.2
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ matrix.node }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{ matrix.node }}-
 
       - name: Lint
         run: |
-          pnpm install --force
-          pnpm lint 
-             
+          pnpm install --force --no-frozen-lockfile
+          pnpm lint
+
   test-unit-node:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '12', '14', '16' ]
+        node: [ '22', '24' ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-pnpm-modules
+      - uses: pnpm/action-setup@v4
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+          version: 9.15.5
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - name: Configure pnpm store
+        run: pnpm config set store-dir ~/.pnpm-store
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v4
         with:
-          version: 6.0.2
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ matrix.node }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{ matrix.node }}-
 
       - name: Run Unit Tests
         run: |
-          pnpm install --force
+          pnpm install --force --no-frozen-lockfile
           pnpm test:unit:node
