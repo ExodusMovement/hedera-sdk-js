@@ -1,7 +1,10 @@
 import { PrivateKey } from "../src/exports.js";
 import Client from "../src/client/WebClient.js";
 import http from "http";
-import { Response as ProtoResponse, TransactionResponse } from "@exodus/hashgraph-proto";
+import {
+    Response as ProtoResponse,
+    TransactionResponse,
+} from "@exodus/hashgraph-proto";
 
 /**
  * @template {*} RequestType

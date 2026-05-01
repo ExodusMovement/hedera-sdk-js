@@ -37,7 +37,7 @@ export default class NativeChannel extends Channel {
                 const data = base64.encode(
                     new Uint8Array(encodeRequest(requestData))
                 );
-    
+
                 const response = await fetch(
                     `${this._address}/proto.${serviceName}/${method.name}`,
                     {
@@ -51,17 +51,17 @@ export default class NativeChannel extends Channel {
                         body: data,
                     }
                 );
-    
+
                 if (!response.ok) {
                     const error = new HttpError(
-                        HttpStatus._fromValue(response.status),
+                        HttpStatus._fromValue(response.status)
                     );
                     callback(error, null);
                     return;
                 }
-    
+
                 const blob = await response.blob();
-    
+
                 /** @type {string} */
                 const responseData = await new Promise((resolve, reject) => {
                     const reader = new FileReader();
@@ -71,10 +71,12 @@ export default class NativeChannel extends Channel {
                     };
                     reader.onerror = reject;
                 });
-    
+
                 let responseBuffer;
                 if (
-                    responseData.startsWith("data:application/octet-stream;base64,")
+                    responseData.startsWith(
+                        "data:application/octet-stream;base64,"
+                    )
                 ) {
                     responseBuffer = base64.decode(
                         responseData.split(
@@ -96,13 +98,13 @@ export default class NativeChannel extends Channel {
                         `Expected response data to be base64 encode with a 'data:application/octet-stream;base64,' or 'data:application/grpc-web+proto;base64,' prefix, but found: ${responseData}`
                     );
                 }
-    
+
                 const unaryResponse = decodeUnaryResponse(
                     /** @type {ArrayBuffer} */ (responseBuffer.buffer),
                     responseBuffer.byteOffset,
                     responseBuffer.byteLength
                 );
-    
+
                 callback(null, unaryResponse);
             } catch (error) {
                 callback(

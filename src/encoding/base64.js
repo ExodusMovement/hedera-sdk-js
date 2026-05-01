@@ -1,6 +1,6 @@
-import { encoding } from '@exodus/hashgraph-cryptography'
+import { encoding } from "@exodus/hashgraph-cryptography";
 
-const lib = encoding.base64
+const lib = encoding.base64;
 
-export const decode = lib.decode
-export const encode = lib.encode
+export const decode = lib.decode;
+export const encode = lib.encode;

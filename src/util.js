@@ -87,7 +87,6 @@ export function requireNonNull(variable) {
     }
 }
 
-
 //Conversions
 
 /**

@@ -35,7 +35,6 @@ export default class WebChannel extends Channel {
     _createUnaryClient(serviceName) {
         return async (method, requestData, callback) => {
             try {
-
                 const response = await fetch(
                     `${this._address}/proto.${serviceName}/${method.name}`,
                     {
@@ -62,13 +61,12 @@ export default class WebChannel extends Channel {
                 const grpcMessage = response.headers.get("grpc-message");
                 if (grpcStatus != null && grpcMessage != null) {
                     const error = new GrpcServiceError(
-                        GrpcStatus._fromValue(parseInt(grpcStatus)),
+                        GrpcStatus._fromValue(parseInt(grpcStatus))
                     );
                     error.message = grpcMessage;
                     callback(error, null);
                     return;
                 }
- 
 
                 const responseBuffer = await response.arrayBuffer();
                 const unaryResponse = decodeUnaryResponse(responseBuffer);
