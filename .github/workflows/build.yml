@@ -91,7 +91,8 @@ jobs:
           pnpm --dir packages/cryptography run compile:types
           pnpm --dir packages/proto run compile
           pnpm --dir packages/proto run cp:ts
-          pnpm lint
+          pnpm lint:types
+          pnpm lint:dpdm
 
   test-unit-node:
     runs-on: ubuntu-latest

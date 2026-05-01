@@ -17,7 +17,7 @@ export default class ManagedNodeAddress {
             const hostAndPortResultRaw = HOST_AND_PORT.exec(props.address);
             const hostAndPortResult =
                 hostAndPortResultRaw &&
-                hostAndPortResultRaw.slice(1).filter((val) => val);
+                hostAndPortResultRaw.slice(1).filter(val => val);
 
             if (hostAndPortResult == null || !hostAndPortResult.length) {
                 throw new Error(`failed to parse address: ${props.address}`);

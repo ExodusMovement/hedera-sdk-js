@@ -176,7 +176,9 @@ export default class ManagedNode {
             return this._channel;
         }
 
-        this._channel = this._channelInitFunction(this.address.toString());
+        this._channel = this._channelInitFunction(
+            this.address.toString()
+        );
         return this._channel;
     }
 
