@@ -91,6 +91,15 @@ export default class Client {
 
         /** @type {number} */
         this._maxBackoff = 8000;
+
+        /**
+         * Optional mirror node REST API base URL used by `FeeEstimateQuery`.
+         * The REST API is independent of the gRPC mirror channel, so we keep
+         * it as a separate setting on the client.
+         *
+         * @type {string | null}
+         */
+        this._mirrorRestApiBaseUrl = null;
     }
 
     /**
@@ -108,6 +117,32 @@ export default class Client {
      */
     get networkName() {
         return this._network.networkName;
+    }
+
+    /**
+     * Configure the mirror node REST API base URL used by `FeeEstimateQuery`.
+     * Pass the URL up to (but not including) `/api/v1` — for example,
+     * `https://mainnet-public.mirrornode.hedera.com/api/v1` is a valid value.
+     *
+     * @param {string} baseUrl
+     * @returns {this}
+     */
+    setMirrorRestApiBaseUrl(baseUrl) {
+        if (typeof baseUrl !== "string" || baseUrl.length === 0) {
+            throw new TypeError(
+                "setMirrorRestApiBaseUrl: baseUrl must be a non-empty string"
+            );
+        }
+        // Drop trailing slashes so we can safely concatenate paths later.
+        this._mirrorRestApiBaseUrl = baseUrl.replace(/\/+$/, "");
+        return this;
+    }
+
+    /**
+     * @returns {string | null}
+     */
+    get mirrorRestApiBaseUrl() {
+        return this._mirrorRestApiBaseUrl;
     }
 
     /**
