@@ -29,7 +29,7 @@ export default class NativeChannel extends Channel {
      * @override
      * @protected
      * @param {string} serviceName
-     * @returns {import("@exodus/protobufjs/minimal.js").RPCImpl}
+     * @returns {import("@exodus/protobufjs/minimal").RPCImpl}
      */
     _createUnaryClient(serviceName) {
         return async (method, requestData, callback) => {

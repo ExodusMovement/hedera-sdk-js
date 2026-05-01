@@ -27,7 +27,6 @@
         "last 1 Firefox versions"
     ],
     "scripts": {
-        "compile:types": "tsc --checkJs false --noImplicitAny false --skipLibCheck true",
         "docs": "typedoc --theme minimal --mode modules --excludeNotExported --excludePrivate --excludeProtected --out docs --listInvalidSymbolLinks",
         "compile": "babel src -d lib",
         "lint": "run-s lint:*",

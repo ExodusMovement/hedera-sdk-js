@@ -50,7 +50,6 @@ jobs:
         run: |
           pnpm install --force --no-frozen-lockfile --ignore-scripts
           pnpm --dir packages/cryptography run compile
-          pnpm --dir packages/cryptography run compile:types
           pnpm --dir packages/proto run compile
           pnpm --dir packages/proto run cp:ts
           pnpm compile:js
@@ -88,10 +87,8 @@ jobs:
         run: |
           pnpm install --force --no-frozen-lockfile --ignore-scripts
           pnpm --dir packages/cryptography run compile
-          pnpm --dir packages/cryptography run compile:types
           pnpm --dir packages/proto run compile
           pnpm --dir packages/proto run cp:ts
-          pnpm lint:types
           pnpm lint:dpdm
 
   test-unit-node:
@@ -127,7 +124,6 @@ jobs:
         run: |
           pnpm install --force --no-frozen-lockfile --ignore-scripts
           pnpm --dir packages/cryptography run compile
-          pnpm --dir packages/cryptography run compile:types
           pnpm --dir packages/proto run compile
           pnpm --dir packages/proto run cp:ts
           pnpm test:unit:node
