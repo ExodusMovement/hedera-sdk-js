@@ -41,7 +41,7 @@
         "prepare": "run-s compile cp:ts"
     },
     "dependencies": {
-        "@exodus/protobufjs": "^6.11.1-minimal-exodus.1"
+        "@exodus/protobufjs": "npm:protobufjs@^6.11.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.16",
