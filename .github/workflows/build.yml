@@ -16,9 +16,6 @@ on:
 permissions:
   contents: read
 
-env:
-  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,8 +33,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          registry-url: https://registry.npmjs.org
-          scope: '@exodus'
 
       - name: Configure pnpm store
         run: pnpm config set store-dir ~/.pnpm-store
@@ -51,7 +46,12 @@ jobs:
             ${{ runner.os }}-pnpm-${{ matrix.node }}-
 
       - name: Build
-        run: pnpm install --force --no-frozen-lockfile
+        run: |
+          pnpm install --force --no-frozen-lockfile --ignore-scripts
+          pnpm --dir packages/cryptography run compile
+          pnpm --dir packages/proto run compile
+          pnpm --dir packages/proto run cp:ts
+          pnpm compile:js
 
   lint:
     runs-on: ubuntu-latest
@@ -69,8 +69,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          registry-url: https://registry.npmjs.org
-          scope: '@exodus'
 
       - name: Configure pnpm store
         run: pnpm config set store-dir ~/.pnpm-store
@@ -85,7 +83,10 @@ jobs:
 
       - name: Lint
         run: |
-          pnpm install --force --no-frozen-lockfile
+          pnpm install --force --no-frozen-lockfile --ignore-scripts
+          pnpm --dir packages/cryptography run compile
+          pnpm --dir packages/proto run compile
+          pnpm --dir packages/proto run cp:ts
           pnpm lint
 
   test-unit-node:
@@ -104,8 +105,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          registry-url: https://registry.npmjs.org
-          scope: '@exodus'
 
       - name: Configure pnpm store
         run: pnpm config set store-dir ~/.pnpm-store
@@ -120,5 +119,8 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          pnpm install --force --no-frozen-lockfile
+          pnpm install --force --no-frozen-lockfile --ignore-scripts
+          pnpm --dir packages/cryptography run compile
+          pnpm --dir packages/proto run compile
+          pnpm --dir packages/proto run cp:ts
           pnpm test:unit:node

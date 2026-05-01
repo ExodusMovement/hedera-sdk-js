@@ -1,0 +1,4 @@
+packages:
+  - .
+  - packages/cryptography
+  - packages/proto
