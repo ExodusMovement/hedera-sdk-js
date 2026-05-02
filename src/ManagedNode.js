@@ -91,6 +91,7 @@ export default class ManagedNode {
      * @abstract
      * @returns {string}
      */
+    // eslint-disable-next-line jsdoc/require-returns-check
     getKey() {
         throw new Error("not implemented");
     }
@@ -99,6 +100,7 @@ export default class ManagedNode {
      * @abstract
      * @returns {ManagedNode<ChannelT>}
      */
+    // eslint-disable-next-line jsdoc/require-returns-check
     toInsecure() {
         throw new Error("not implemented");
     }
@@ -107,6 +109,7 @@ export default class ManagedNode {
      * @abstract
      * @returns {ManagedNode<ChannelT>}
      */
+    // eslint-disable-next-line jsdoc/require-returns-check
     toSecure() {
         throw new Error("not implemented");
     }
