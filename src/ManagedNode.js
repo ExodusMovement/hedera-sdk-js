@@ -184,8 +184,8 @@ export default class ManagedNode {
 
     /**
      * Determines if this node is healthy by checking whether the current backoff
-     * window has expired. The window is set forward by `increaseDelay()` /
-     * `recordFailure()` after retryable failures.
+     * window has expired. The window is set forward by `increaseDelay()` after
+     * retryable failures.
      *
      * @returns {boolean}
      */
@@ -194,6 +194,7 @@ export default class ManagedNode {
     }
 
     increaseDelay() {
+        this._attempts += 1;
         this._currentBackoff = Math.min(
             this._currentBackoff * 2,
             this._maxBackoff
@@ -202,30 +203,11 @@ export default class ManagedNode {
     }
 
     decreaseDelay() {
+        this._attempts = 0;
         this._currentBackoff = Math.max(
             this._currentBackoff / 2,
             this._minBackoff
         );
-    }
-
-    /**
-     * Mark this node as having just produced a retryable failure. Increments
-     * `_attempts` so that `setMaxNodeAttempts()` can prune persistently failing
-     * nodes, and increases the backoff window so this node is skipped while it
-     * recovers.
-     */
-    recordFailure() {
-        this._attempts += 1;
-        this.increaseDelay();
-    }
-
-    /**
-     * Mark this node as having just produced a successful response. Resets
-     * `_attempts` so the node is not pruned, and decreases the backoff window.
-     */
-    recordSuccess() {
-        this._attempts = 0;
-        this.decreaseDelay();
     }
 
     /**

@@ -94,6 +94,17 @@ describe("Client", function () {
                 expect(node._lastUsed).to.be.greaterThan(before);
             });
         });
+
+        it("should count retryable failures through the existing delay path", function () {
+            const client = buildClient();
+            const node = client._network._nodes[0];
+
+            node.increaseDelay();
+            expect(node.attempts).to.equal(1);
+
+            node.decreaseDelay();
+            expect(node.attempts).to.equal(0);
+        });
     });
 
     it("should correctly construct and update network", async function () {

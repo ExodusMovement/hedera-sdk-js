@@ -426,9 +426,7 @@ export default class Executable {
                     this._shouldRetryExceptionally(error) &&
                     attempt <= maxAttempts
                 ) {
-                    if (typeof node.recordFailure === "function") {
-                        node.recordFailure();
-                    } else {
+                    if (node.isHealthy()) {
                         node.increaseDelay();
                     }
                     continue;
@@ -437,16 +435,12 @@ export default class Executable {
                 throw err;
             }
 
-            if (typeof node.recordSuccess === "function") {
-                node.recordSuccess();
-            } else {
-                node.decreaseDelay();
-            }
+            node.decreaseDelay();
 
             switch (this._shouldRetry(request, response)) {
                 case ExecutionState.Retry:
-                    if (typeof node.recordFailure === "function") {
-                        node.recordFailure();
+                    if (node.isHealthy()) {
+                        node.increaseDelay();
                     }
                     await delayForAttempt(
                         attempt,

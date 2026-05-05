@@ -23,8 +23,6 @@ describe("Executable", function () {
                 this._channel = { _key: key };
                 this.increaseDelayCalls = 0;
                 this.decreaseDelayCalls = 0;
-                this.recordFailureCalls = 0;
-                this.recordSuccessCalls = 0;
                 this.waitCalls = 0;
             }
 
@@ -47,15 +45,6 @@ describe("Executable", function () {
 
             decreaseDelay() {
                 this.decreaseDelayCalls += 1;
-            }
-
-            recordFailure() {
-                this.recordFailureCalls += 1;
-                this._healthy = false;
-            }
-
-            recordSuccess() {
-                this.recordSuccessCalls += 1;
             }
 
             wait() {
@@ -153,8 +142,8 @@ describe("Executable", function () {
                 "0.0.3",
                 "0.0.4",
             ]);
-            expect(nodeA.recordFailureCalls).to.be.greaterThan(0);
-            expect(nodeB.recordSuccessCalls).to.be.greaterThan(0);
+            expect(nodeA.increaseDelayCalls).to.be.greaterThan(0);
+            expect(nodeB.decreaseDelayCalls).to.be.greaterThan(0);
             expect(nodeA.waitCalls).to.equal(0);
         });
 
