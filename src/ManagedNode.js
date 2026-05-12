@@ -79,7 +79,7 @@ export default class ManagedNode {
             this._minBackoff = props.cloneNode.node._minBackoff;
 
             /** @type {number} */
-            this._maxBackoff = props.cloneNode.node._minBackoff;
+            this._maxBackoff = props.cloneNode.node._maxBackoff;
         } else {
             throw new Error(
                 `failed to create ManagedNode: ${JSON.stringify(props)}`
@@ -170,7 +170,7 @@ export default class ManagedNode {
 
     getChannel() {
         this._useCount++;
-        this.__lastUsed = Date.now();
+        this._lastUsed = Date.now();
 
         if (this._channel != null) {
             return this._channel;
@@ -183,10 +183,9 @@ export default class ManagedNode {
     }
 
     /**
-     * Determines if this node is healthy by checking if this node hasn't been
-     * in use for a the required `_currentBackoff` period. Since this looks at `this._lastUsed`
-     * and that value is only set in the `wait()` method, any node that has not
-     * returned a bad gRPC status will always be considered healthy.
+     * Determines if this node is healthy by checking whether the current backoff
+     * window has expired. The window is set forward by `increaseDelay()` after
+     * retryable failures.
      *
      * @returns {boolean}
      */
@@ -195,6 +194,7 @@ export default class ManagedNode {
     }
 
     increaseDelay() {
+        this._attempts += 1;
         this._currentBackoff = Math.min(
             this._currentBackoff * 2,
             this._maxBackoff
@@ -203,6 +203,7 @@ export default class ManagedNode {
     }
 
     decreaseDelay() {
+        this._attempts = 0;
         this._currentBackoff = Math.max(
             this._currentBackoff / 2,
             this._minBackoff
@@ -217,8 +218,8 @@ export default class ManagedNode {
      * @returns {Promise<void>}
      */
     wait() {
-        const _currentBackoff = this._backoffUntil - this._lastUsed;
-        return new Promise((resolve) => setTimeout(resolve, _currentBackoff));
+        const remaining = Math.max(this._backoffUntil - Date.now(), 0);
+        return new Promise((resolve) => setTimeout(resolve, remaining));
     }
 
     /**

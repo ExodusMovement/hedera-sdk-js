@@ -117,6 +117,10 @@ export default class MangedNetwork {
     }
 
     /**
+     * Select up to `count` distinct, preferentially healthy nodes from the
+     * network. Healthy nodes are returned first; only when there are not enough
+     * healthy distinct nodes will we fall back to currently-unhealthy ones.
+     *
      * @param {number} count
      * @returns {NetworkNodeT[]}
      */
@@ -129,21 +133,55 @@ export default class MangedNetwork {
             value.sort((a, b) => a.compare(b));
         }
 
+        const target = Math.max(0, Math.floor(count));
+
         /** @type {NetworkNodeT[]} */
-        const nodes = [];
-        const keys = new Set();
+        const healthy = [];
+        const healthyKeys = new Set();
+        /** @type {NetworkNodeT[]} */
+        const unhealthy = [];
+        const unhealthyKeys = new Set();
 
         for (const node of this._nodes) {
-            if (keys.size >= count) {
-                break;
-            }
+            const key = node.getKey();
 
-            if (!keys.has(node.getKey())) {
-                nodes.push(node);
+            if (node.isHealthy()) {
+                if (healthyKeys.has(key)) {
+                    continue;
+                }
+                healthyKeys.add(key);
+                healthy.push(node);
+                if (healthy.length >= target) {
+                    break;
+                }
+            } else {
+                if (unhealthyKeys.has(key)) {
+                    continue;
+                }
+                unhealthyKeys.add(key);
+                unhealthy.push(node);
             }
         }
 
-        return nodes;
+        if (healthy.length >= target) {
+            return healthy.slice(0, target);
+        }
+
+        // Fill the remainder with unhealthy nodes that are not already
+        // covered by a healthy one, so the executable still has alternates to
+        // fall back to.
+        const result = healthy.slice();
+        for (const node of unhealthy) {
+            if (result.length >= target) {
+                break;
+            }
+            if (healthyKeys.has(node.getKey())) {
+                continue;
+            }
+            result.push(node);
+        }
+
+        return result;
     }
 
     /**

@@ -198,7 +198,7 @@ export default class Network extends ManagedNetwork {
             return this._maxNodesPerTransaction;
         }
 
-        return (this._nodes.length + 3 - 1) / 3;
+        return Math.max(1, Math.ceil(this._nodes.length / 3));
     }
 
     /**

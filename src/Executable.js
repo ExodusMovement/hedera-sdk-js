@@ -5,6 +5,8 @@ import GrpcStatus from "./grpc/GrpcStatus.js";
  * @typedef {import("./account/AccountId.js").default} AccountId
  * @typedef {import("./channel/Channel.js").default} Channel
  * @typedef {import("./transaction/TransactionId.js").default} TransactionId
+ * @typedef {import("./ManagedNode.js").default<Channel>} ManagedNode
+ * @typedef {import("./client/Client.js").default<Channel, *>} Client
  */
 
 /**
@@ -303,9 +305,72 @@ export default class Executable {
     }
 
     /**
-     * @template {Channel} ChannelT
-     * @template MirrorChannelT
-     * @param {import("./client/Client.js").default<ChannelT, MirrorChannelT>} client
+     * Pick a node from the frozen `_nodeIds` list, preferring nodes that are
+     * currently healthy. Returns the resolved `{ node, nodeAccountId }`.
+     *
+     * If every frozen node is unhealthy this still returns one of them so the
+     * caller can `wait()` on it.
+     *
+     * @protected
+     * @param {Client} client
+     * @returns {{ node: ManagedNode, nodeAccountId: AccountId, allUnhealthy: boolean }}
+     */
+    _selectNode(client) {
+        const total = this._nodeIds.length;
+        if (total === 0) {
+            const nodeAccountId = this._getNodeAccountId();
+            const node = client._network.getNode(nodeAccountId);
+            return { node, nodeAccountId, allUnhealthy: false };
+        }
+
+        /** @type {ManagedNode | null} */
+        let firstNode = null;
+        /** @type {AccountId | null} */
+        let firstNodeAccountId = null;
+        let firstNodeIndex = -1;
+
+        for (let offset = 0; offset < total; offset += 1) {
+            const candidateIndex = (this._nextNodeIndex + offset) % total;
+            const candidateAccountId = this._nodeIds[candidateIndex];
+            const candidate = client._network.getNode(candidateAccountId);
+
+            if (candidate == null) {
+                continue;
+            }
+
+            if (firstNode == null) {
+                firstNode = candidate;
+                firstNodeAccountId = candidateAccountId;
+                firstNodeIndex = candidateIndex;
+            }
+
+            if (candidate.isHealthy()) {
+                this._nextNodeIndex =
+                    (this._nextNodeIndex + offset) % total;
+                return {
+                    node: candidate,
+                    nodeAccountId: candidateAccountId,
+                    allUnhealthy: false,
+                };
+            }
+        }
+
+        if (firstNode != null && firstNodeAccountId != null) {
+            this._nextNodeIndex = firstNodeIndex;
+            return {
+                node: firstNode,
+                nodeAccountId: firstNodeAccountId,
+                allUnhealthy: true,
+            };
+        }
+
+        const nodeAccountId = this._getNodeAccountId();
+        const node = client._network.getNode(nodeAccountId);
+        return { node, nodeAccountId, allUnhealthy: false };
+    }
+
+    /**
+     * @param {Client} client
      * @returns {Promise<OutputT>}
      */
     async execute(client) {
@@ -324,8 +389,8 @@ export default class Executable {
                 : this._maxAttempts;
 
         for (let attempt = 1 /* loop forever */; ; attempt += 1) {
-            const nodeAccountId = this._getNodeAccountId();
-            const node = client._network.getNode(nodeAccountId);
+            const { node, nodeAccountId, allUnhealthy } =
+                this._selectNode(client);
 
             if (node == null) {
                 throw new Error(
@@ -343,7 +408,9 @@ export default class Executable {
 
             let response;
 
-            if (!node.isHealthy()) {
+            // Only wait when we could not find any healthy frozen node. This
+            // avoids stalling broadcasts when at least one alternate is ready.
+            if (allUnhealthy) {
                 await node.wait();
             }
 
@@ -359,7 +426,9 @@ export default class Executable {
                     this._shouldRetryExceptionally(error) &&
                     attempt <= maxAttempts
                 ) {
-                    node.increaseDelay();
+                    if (node.isHealthy()) {
+                        node.increaseDelay();
+                    }
                     continue;
                 }
 
@@ -370,6 +439,9 @@ export default class Executable {
 
             switch (this._shouldRetry(request, response)) {
                 case ExecutionState.Retry:
+                    if (node.isHealthy()) {
+                        node.increaseDelay();
+                    }
                     await delayForAttempt(
                         attempt,
                         this._minBackoff,
