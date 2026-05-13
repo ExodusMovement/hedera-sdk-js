@@ -12,6 +12,8 @@ export { default as AccountUpdateTransaction } from "./account/AccountUpdateTran
 export { default as ContractFunctionResult } from "./contract/ContractFunctionResult.js";
 export { default as ContractLogInfo } from "./contract/ContractLogInfo.js";
 export { default as ExchangeRate } from "./ExchangeRate.js";
+export { default as FeeEstimateMode } from "./network/FeeEstimateMode.js";
+export { default as FeeEstimateQuery } from "./network/FeeEstimateQuery.js";
 export { default as FreezeTransaction } from "./system/FreezeTransaction.js";
 export { default as Hbar } from "./Hbar.js";
 export { default as HbarUnit } from "./HbarUnit.js";

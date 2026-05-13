@@ -1,6 +1,39 @@
 import { Client } from "../src/browser.js";
 
 describe("Client", function () {
+    describe("setMirrorRestApiBaseUrl()", function () {
+        it("stores the URL on the client and trims trailing slashes", function () {
+            const client = Client.forNetwork({
+                "node-a:50211": "0.0.3",
+            });
+            client.setMirrorRestApiBaseUrl(
+                "https://mirror.example/api/v1//"
+            );
+            expect(client.mirrorRestApiBaseUrl).to.equal(
+                "https://mirror.example/api/v1"
+            );
+        });
+
+        it("throws on an empty or non-string URL", function () {
+            const client = Client.forNetwork({
+                "node-a:50211": "0.0.3",
+            });
+            expect(() => client.setMirrorRestApiBaseUrl("")).to.throw(
+                /non-empty string/
+            );
+            expect(() => client.setMirrorRestApiBaseUrl(null)).to.throw(
+                /non-empty string/
+            );
+        });
+
+        it("returns null until configured", function () {
+            const client = Client.forNetwork({
+                "node-a:50211": "0.0.3",
+            });
+            expect(client.mirrorRestApiBaseUrl).to.equal(null);
+        });
+    });
+
     it("should support multiple IPs per node account ID", async function () {
         let nodes = {
             "0.testnet.hedera.com:50211": "0.0.3",
