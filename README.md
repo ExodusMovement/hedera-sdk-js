@@ -46,9 +46,9 @@ The Exodus fork publishes as `@exodus/hashgraph-sdk` to npm. There is no CI rele
 The `prepare` script (compile + tsc) currently can't run end-to-end because of pre-existing type errors, so publishing requires `--ignore-scripts` and the `lib/` must be compiled manually first.
 
 1. Bump `version` in `package.json` (e.g. `2.6.0-exodus.17` → `2.6.0-exodus.18`).
-2. Compile `lib/`:
+2. Compile `lib/` from a clean state (so stale outputs from renamed/deleted `src/` files don't ship):
    ```
-   yarn compile:js
+   rm -rf lib && yarn compile:js
    ```
 3. (Optional) Inspect what will ship vs the currently-published artifact:
    ```
