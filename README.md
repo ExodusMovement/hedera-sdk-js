@@ -39,6 +39,40 @@ The Hedera JavaScript SDK does not currently support the following:
 
 See [examples](./examples).
 
+## Releasing (Exodus fork)
+
+The Exodus fork publishes as `@exodus/hashgraph-sdk` to npm. There is no CI release pipeline — it's a manual `npm publish` from the repo root.
+
+The `prepare` script (compile + tsc) currently can't run end-to-end because of pre-existing type errors, so publishing requires `--ignore-scripts` and the `lib/` must be compiled manually first.
+
+1. Bump `version` in `package.json` (e.g. `2.6.0-exodus.17` → `2.6.0-exodus.18`).
+2. Compile `lib/`:
+   ```
+   yarn compile:js
+   ```
+3. (Optional) Inspect what will ship vs the currently-published artifact:
+   ```
+   npm pack --ignore-scripts --pack-destination=/tmp
+   npm pack @exodus/hashgraph-sdk@<previous-version> --pack-destination=/tmp
+   # extract both and diff
+   ```
+4. Commit using the bare version as the message (matches existing history):
+   ```
+   git commit -am "2.6.0-exodus.18"
+   ```
+5. Publish:
+   ```
+   npm publish --ignore-scripts --tag latest
+   ```
+   `--tag latest` is required for prerelease versions (the `-exodus.N` suffix). Add `--otp=<code>` if your account has 2FA.
+6. Tag and push:
+   ```
+   git tag 2.6.0-exodus.18
+   git push --follow-tags
+   ```
+
+You need `read-write` access on the `@exodus/hashgraph-sdk` package: `npm access list collaborators @exodus/hashgraph-sdk`.
+
 ## Contributing to this Project
 
 We welcome participation from all developers!
