@@ -37,7 +37,7 @@
         "compile:js": "babel src -d lib",
         "lint": "run-s lint:*",
         "lint:types": "tsc",
-        "lint:dpdm": "dpdm src/index.js --circular true --tree false --warning false",
+        "lint:dpdm": "dpdm src/exports.js --circular true --tree false --warning false",
         "lint:format": "prettier src 'test/unit/*.js' 'test/integration/*.js' '*.json' 'src/*.js' --check",
         "lint:js": "eslint --fix 'src/**/*.js' 'test/integration/**/*.js' 'test/unit/**/*.js'",
         "format": "prettier src 'test/unit/*.js' 'test/integration/*.js' '*.json' 'src/*.js' --write",
